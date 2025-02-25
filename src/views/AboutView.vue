@@ -80,16 +80,16 @@ const contentStore = useContentStore();
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>武汉大学</h3>
-            <p class="timeline-period">2019 - 至今</p>
+            <h3>武汉科技大学</h3>
+            <p class="timeline-period">2023 - 至今</p>
             <p>计算机科学与技术专业</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>湖北省实验中学</h3>
-            <p class="timeline-period">2016 - 2019</p>
+            <h3>蕲春县第一高级中学</h3>
+            <p class="timeline-period">2020 - 2023</p>
             <p>高中教育</p>
           </div>
         </div>

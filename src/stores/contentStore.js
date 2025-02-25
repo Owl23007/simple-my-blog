@@ -7,7 +7,7 @@ export const useContentStore = defineStore('content', {
       title: '在校学生',
       bio: '热爱前端开发和UI/UX设计的工程师，专注于创建高效、美观的web应用。',
       location: '中国，湖北，武汉',
-      email: 'zhangsan@example.com',
+      email: '17886872185@163.com',
       github: '/demo-page',
       linkedin: '/demo-page',
       //图片来源于网络，仅供学习交流使用
