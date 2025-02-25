@@ -19,7 +19,7 @@
 git clone https://github.com/Owl23007/SimpleMyInfo.git
 
 # 进入项目目录
-cd SimipleMyInfo
+cd SimpleMyInfo
 
 # 安装依赖
 npm install
