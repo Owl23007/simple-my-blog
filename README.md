@@ -19,7 +19,7 @@
 git clone https://github.com/Owl23007/SimipleMyInfo.git
 
 # 进入项目目录
-cd quick-start
+cd SimipleMyInfo
 
 # 安装依赖
 npm install
