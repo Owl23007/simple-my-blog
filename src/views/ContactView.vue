@@ -5,25 +5,23 @@
       <div class="underline"></div>
       <p class="subtitle">有任何问题或建议？请随时联系我们</p>
     </div>
-    
+
     <div class="contact-content">
       <div class="contact-info">
         <h2>联系方式</h2>
         <div class="info-item">
           <i class="fas fa-envelope"></i>
-          <span>2649326107@qq.com</span>
+          <span>{{ contentStore.personalInfo.email }}</span>
         </div>
         <div class="info-item">
           <i class="fas fa-phone"></i>
-          <span>+86 178 8687 2185</span>
+          <span>{{ contentStore.personalInfo.phone }}</span>
         </div>
         <div class="info-item">
           <i class="fas fa-map-marker-alt"></i>
-          <span>武汉科技大学 武汉，湖北</span>
+          <span>{{ contentStore.personalInfo.location }}</span>
         </div>
-        
       </div>
-      
       <div class="contact-form">
         <h2>给我们留言</h2>
         <form @submit.prevent="submitForm">
@@ -54,18 +52,21 @@
           </button>
         </form>
       </div>
+
+
     </div>
-    
-  
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+import { useContentStore } from '@/stores/contentStore';
 
 export default defineComponent({
   name: 'ContactView',
   setup() {
+    const contentStore = useContentStore();
+
     const form = reactive({
       name: '',
       email: '',
@@ -84,7 +85,8 @@ export default defineComponent({
 
     return {
       form,
-      submitForm
+      submitForm,
+      contentStore
     };
   }
 });
@@ -133,7 +135,8 @@ export default defineComponent({
   margin-bottom: 60px;
 }
 
-.contact-info, .contact-form {
+.contact-info,
+.contact-form {
   flex: 1;
   min-width: 300px;
   background-color: #fff;
@@ -143,12 +146,15 @@ export default defineComponent({
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.contact-info:hover, .contact-form:hover {
+.contact-info:hover,
+.contact-form:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.contact-info h2, .contact-form h2, .map-section h2 {
+.contact-info h2,
+.contact-form h2,
+.map-section h2 {
   color: #35495e;
   margin-bottom: 25px;
   font-size: 1.8rem;
@@ -157,7 +163,9 @@ export default defineComponent({
   padding-bottom: 10px;
 }
 
-.contact-info h2::after, .contact-form h2::after, .map-section h2::after {
+.contact-info h2::after,
+.contact-form h2::after,
+.map-section h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -265,7 +273,8 @@ export default defineComponent({
   font-size: 1.1rem;
 }
 
-.input-group input, .input-group textarea {
+.input-group input,
+.input-group textarea {
   width: 100%;
   padding: 14px;
   border: none;
@@ -273,7 +282,8 @@ export default defineComponent({
   font-size: 1rem;
 }
 
-.input-group input:focus, .input-group textarea:focus {
+.input-group input:focus,
+.input-group textarea:focus {
   outline: none;
 }
 
@@ -339,23 +349,31 @@ export default defineComponent({
   .contact-content {
     flex-direction: column;
   }
-  
+
   .contact-header h1 {
     font-size: 2.2rem;
   }
-  
-  .contact-info, .contact-form {
+
+  .contact-info,
+  .contact-form {
     padding: 25px;
   }
-  
+
   .map-container {
     height: 300px;
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .contact-header,
@@ -365,7 +383,15 @@ export default defineComponent({
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-.contact-info { animation-delay: 0.2s; }
-.contact-form { animation-delay: 0.4s; }
-.map-section { animation-delay: 0.6s; }
+.contact-info {
+  animation-delay: 0.2s;
+}
+
+.contact-form {
+  animation-delay: 0.4s;
+}
+
+.map-section {
+  animation-delay: 0.6s;
+}
 </style>
