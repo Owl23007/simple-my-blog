@@ -3,3 +3,5 @@ dist
 cache
 .temp
 .DS_Store
+
+.vscode

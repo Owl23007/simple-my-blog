@@ -10,6 +10,7 @@ sticky: 1
 更多细节见 https://theme.sugarat.top
 
 ## 已支持功能
+
 介绍一下主要的，非所有
 
 * 博客首页
@@ -32,6 +33,7 @@ sticky: 1
 * 更多可定制的主题样式
 
 ## 规划中功能
+
 * Valine 评论系统
 * 文章合集（类似于聚合一个内容专题）
 * 文章时间线页面支持
@@ -39,11 +41,12 @@ sticky: 1
 * 首屏铺满slogan，参考reco
 
 ## 参考项目
+
 或多或少借鉴&使用了如下的一下开源项目，博客，网站的能力或者UI样式
 
 * [reco](https://vuepress-theme-reco.recoluan.com/)
 * [掘金](https://juejin.cn/)
-* [surmon](https://surmon.me/) 
+* [surmon](https://surmon.me/)
 * [@vue/theme](https://github.com/vuejs/theme)
 * [vitest](https://vitest.dev/)
 * [element-plus](https://element-plus.gitee.io/zh-CN/)
@@ -53,13 +56,14 @@ sticky: 1
 * [列表无限滚动轮播效果](https://code.juejin.cn/pen/7145007064350195748)
 
 ## 主题相关资源
+
 * 主题地址：https://theme.sugarat.top/
 * 主题包：[@sugarat/theme](https://www.npmjs.com/package/@sugarat/theme)
 * 项目地址：https://github.com/ATQQ/sugar-blog/tree/master/packages/theme
 * 作者博客地址：https://sugarat.top
 
-
 ## 最后
+
 如果你有建议的 功能&想法 欢迎 私信&评论区 交流
 
 如果你觉得主题不错，欢迎分享与使用，可以在评论区留下你的网站地址

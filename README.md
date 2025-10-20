@@ -164,7 +164,7 @@ description: 文章描述
 
 ## License
 
-MIT License © 2024-2025 Owl23007
+[MIT License](https://opensource.org/licenses/MIT) © 2025 [Owl23007](License)
 
 ## 致谢与贡献者
 
