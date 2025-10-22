@@ -8,6 +8,24 @@
   &::before {
     background-image: url(./assets/bg.webp);
     background-size: cover;
+    background-position: center top; // 将背景图片定位到顶部
+    background-repeat: no-repeat;    // 防止背景图重复
+    background-position: center 100%
+  }
+
+ background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+
+  // 可选：如果希望在深色模式下也保持一致的视觉效果，可以单独定义
+  html[theme].dark & {
+    background: radial-gradient(
+      ellipse,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
   }
 }
 
@@ -27,8 +45,8 @@
   // 过渡动画
   transition: all 0.3s ease;
 
-  // 背景色
-  background: var(--vp-c-bg-soft);
+  // 背景色 (使用半透明白色，与背景图融合)
+  background: rgba(255, 255, 255, 0.85);
 
   // 鼠标悬停效果
   &:hover {
@@ -72,7 +90,7 @@
 // 修改置顶图标样式
 .blog-item .pin.pin::before {
   // 修改颜色为红色
-  background-image: linear-gradient(#ff6b6b, #ee5a52);
+  background-image: linear-gradient(#6bd3ff, #0dbf4e);
 }
 
 // 如果想隐藏置顶图标,取消下面注释
