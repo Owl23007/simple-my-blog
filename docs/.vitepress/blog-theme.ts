@@ -3,15 +3,15 @@ import { getThemeConfig } from '@sugarat/theme/node'
 
 import type { Theme } from '@sugarat/theme'
 
-const baseUrl = 'https://sugarat.top'
+const baseUrl = ''
 const RSS: Theme.RSSOptions = {
   title: '沃以 Oii Woof',
   baseUrl,
   copyright: 'Copyright (c) 2025, 沃以 Oii Woof',
   description: '你的指尖,拥有改变世界的力量（大前端相关技术分享）',
   language: 'zh-cn',
-  image: 'https://avatars.githubusercontent.com/u/136145851',
-  favicon: 'https://avatars.githubusercontent.com/u/136145851',
+  image: '/avatar.png',
+  favicon: '/favicon.ico',
 }
 
 // 所有配置项，详见文档: https://theme.sugarat.top/
@@ -54,13 +54,6 @@ const blogTheme = getThemeConfig({
       avatar:
         'https://img.cdn.sugarat.top/mdImg/MTY3NDk5NTE2NzAzMA==674995167030',
       url: 'https://sugarat.top',
-    },
-    {
-      nickname: 'Vitepress',
-      des: 'Vite & Vue Powered Static Site Generator',
-      avatar:
-        'https://vitepress.dev/vitepress-logo-large.webp',
-      url: 'https://vitepress.dev/',
     },
   ],
 
