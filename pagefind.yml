@@ -1,0 +1,31 @@
+# PageFind 配置文件
+site: docs/.vitepress/dist
+output_path: docs/.vitepress/dist/pagefind
+
+# 搜索配置
+glob: "**/*.{html}"
+
+# 排除不需要索引的文件
+exclude_selectors:
+  - "nav"
+  - "aside"
+  - "footer"
+  - ".VPNavBar"
+  - ".VPSidebar"
+  - ".VPFooter"
+
+# 只索引主要内容
+root_selector: "main"
+
+# 语言设置
+language: "zh"
+
+# 索引排序
+ranking:
+  page_rank_weight: 1.0
+  term_saturation: 3.0
+  term_weight: 1.0
+  length_weight: 1.0
+
+# 搜索结果片段长度
+excerpt_length: 30

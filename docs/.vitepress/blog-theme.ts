@@ -3,12 +3,12 @@ import { getThemeConfig } from '@sugarat/theme/node'
 
 import type { Theme } from '@sugarat/theme'
 
-const baseUrl = ''
+const baseUrl = 'https://sugarat.top'
 const RSS: Theme.RSSOptions = {
   title: '沃以 Oii Woof',
   baseUrl,
   copyright: 'Copyright (c) 2025, 沃以 Oii Woof',
-  description: '你的指尖,拥有改变世界的力量（大前端相关技术分享）',
+  description: '如果人生只剩20分钟，不如烤个棉花糖吧',
   language: 'zh-cn',
   image: '/avatar.png',
   favicon: '/favicon.ico',
@@ -18,9 +18,8 @@ const RSS: Theme.RSSOptions = {
 const blogTheme = getThemeConfig({
   RSS,
 
-  // 搜索
-  // 默认开启pagefind离线的全文搜索支持（如使用其它的可以设置为false）
-  // search: false,
+  // 搜索配置 - 默认开启pagefind离线的全文搜索支持
+  // search: false, // 如果要禁用搜索，取消注释这行
 
   // 默认关闭 markdown 图表支持（开启会增加一定的构建耗时）
   // mermaid: false

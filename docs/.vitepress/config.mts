@@ -7,7 +7,7 @@ import { blogTheme } from './blog-theme'
 // 通常需要修改 base 路径，通常为“/仓库名/”
 // 如果项目名已经为 name.github.io 域名，则不需要修改！
 const base = process.env.GITHUB_ACTIONS === 'true'
-  ? '//'
+  ? '/simple-my-blog/'
   : '/'
 
 // Vitepress 默认配置
@@ -18,7 +18,7 @@ export default defineConfig({
   // base,
   lang: 'zh-cn',
   title: '沃以的小站',
-  description: '粥里有勺糖的博客主题，基于 vitepress 实现',
+  description: '如果人生只剩20分钟，不如烤个棉花糖吧',
   lastUpdated: true,
   // 详见：https://vitepress.dev/zh/reference/site-config#head
   head: [
@@ -38,7 +38,7 @@ export default defineConfig({
     lastUpdatedText: '上次更新于',
 
     // 设置logo
-    logo: '/logo.png',
+    logo: '/avatar.png',
     editLink: {
       pattern:
         'https://github.com/Owl23007/simple-my-blog/edit/master/docs/:path',
