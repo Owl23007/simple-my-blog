@@ -45,6 +45,14 @@ const blogTheme = getThemeConfig({
   // 文章默认作者
   author: '沃以',
 
+  // 推荐文章配置
+  //recommend: {
+  //  title: '精选推荐',
+  // nextText: '换一组',
+  //  pageSize: 6,
+  // style: 'card'
+  //},
+
   // 友链
   friend: [
     {

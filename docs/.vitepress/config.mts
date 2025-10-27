@@ -38,14 +38,23 @@ export default defineConfig({
 
     // 设置logo
     logo: '/avatar.png',
-    editLink: {
-      pattern:
-        'https://github.com/Owl23007/simple-my-blog/edit/master/docs/:path',
-      text: '去 GitHub 上编辑内容'
-    },
+    //editLink: {
+    // pattern:
+    //   'https://github.com/Owl23007/simple-my-blog/edit/master/docs/:path',
+    //text: '去 GitHub 上编辑内容'
+    //},
     nav: [
       { text: '首页', link: '/' },
-
+      {
+        text: '文章',
+        items: [
+          { text: '技术笔记', link: '/tech/' },
+          { text: '生活随笔', link: '/life/' },
+          { text: '归档', link: '/pages/archives' },
+          { text: '标签', link: '/pages/tags' }
+        ]
+      },
+      { text: '关于我', link: '/pages/about' }
     ],
     socialLinks: [
       {
