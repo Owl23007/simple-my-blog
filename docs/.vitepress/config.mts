@@ -15,7 +15,7 @@ const base = process.env.GITHUB_ACTIONS === 'true'
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
   extends: blogTheme,
-  // base,
+  base,
   lang: 'zh-cn',
   title: '沃以的小站',
   description: '如果人生只剩20分钟，不如烤个棉花糖吧',
@@ -23,8 +23,7 @@ export default defineConfig({
   // 详见：https://vitepress.dev/zh/reference/site-config#head
   head: [
     // 配置网站的图标（显示在浏览器的 tab 上）
-    // ['link', { rel: 'icon', href: `${base}favicon.ico` }], // 修改了 base 这里也需要同步修改
-    ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: `${base}favicon.ico` }]
   ],
   themeConfig: {
     // 展示 2,3 级标题在目录中
