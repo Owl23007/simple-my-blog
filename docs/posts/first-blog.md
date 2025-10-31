@@ -6,6 +6,8 @@ tags:
   - VitePress
   - 技术
 description: '这是我的第一篇博客文章，介绍如何使用VitePress搭建个人博客。'
+author: 沃以
+publish: true
 ---
 
 欢迎来到我的博客！这是我使用 VitePress 和 @sugarat/theme 搭建的个人博客。

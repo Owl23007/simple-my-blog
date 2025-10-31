@@ -1,28 +1,48 @@
 // 主题独有配置
 import { getThemeConfig } from '@sugarat/theme/node'
 
-import type { Theme } from '@sugarat/theme'
+// const RSS: Theme.RSSOptions = {
+// title: '沃以 Oii Woof',
+// baseUrl: 'https://blog.woyioii.cn',
+// copyright: 'Copyright (c) 2025, 沃以 Oii Woof',
+// description: '如果人生只剩20分钟，不如烤个棉花糖吧',
+// language: 'zh-cn',
+//image: '/avatar.png',
+//favicon: '/favicon.ico',
+//}
 
-const baseUrl = 'https://sugarat.top'
-const RSS: Theme.RSSOptions = {
-  title: '沃以 Oii Woof',
-  baseUrl,
-  copyright: 'Copyright (c) 2025, 沃以 Oii Woof',
-  description: '如果人生只剩20分钟，不如烤个棉花糖吧',
-  language: 'zh-cn',
-  image: '/avatar.png',
-  favicon: '/favicon.ico',
-}
-
-// 所有配置项，详见文档: https://theme.sugarat.top/
+// 所有配置项,详见文档: https://theme.sugarat.top/
 const blogTheme = getThemeConfig({
-  RSS,
+  //RSS,
 
   // 搜索配置 - 默认开启pagefind离线的全文搜索支持
-  // search: false, // 如果要禁用搜索，取消注释这行
+  // search: false, // 如果要禁用搜索,取消注释这行
 
-  // 默认关闭 markdown 图表支持（开启会增加一定的构建耗时）
+  // 默认关闭 markdown 图表支持(开启会增加一定的构建耗时)
   // mermaid: false
+
+  // 首页
+  home: {
+    // 首页展示的文章数量
+    pageSize: 6
+  },
+
+  // 文章
+  article: {
+    // 是否展示文章的预计阅读时间
+    readingTime: true,
+    // 是否隐藏文章页的封面展示
+    hiddenCover: false
+  },
+
+  // 推荐文章
+  recommend: {
+    title: '🔍 相关文章',
+    nextText: '换一组',
+    pageSize: 6,
+    style: 'sidebar',
+    sort: 'date'
+  },
 
   // 页脚
   footer: {

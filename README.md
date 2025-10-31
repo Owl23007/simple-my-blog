@@ -1,6 +1,6 @@
 # simple-my-blog 我的博客
 
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)  ![VitePress](https://img.shields.io/badge/VitePress-42b883?style=flat&logo=vue.js&logoColor=white)     ![Blog](https://img.shields.io/badge/Blog-FF6B6B?style=flat&logo=blogger&logoColor=white)![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat&logo=github&logoColor=white)  [![GitHub stars](https://img.shields.io/github/stars/Owl23007/simple-my-blog?style=social)](https://github.com/Owl23007/simple-my-blog)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)  ![VitePress](https://img.shields.io/badge/VitePress-42b883?style=flat&logo=vue.js&logoColor=white)     ![Blog](https://img.shields.io/badge/Blog-FF6B6B?style=flat&logo=blogger&logoColor=white)  ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat&logo=github&logoColor=white)  [![GitHub stars](https://img.shields.io/github/stars/Owl23007/simple-my-blog?style=social)](https://github.com/Owl23007/simple-my-blog)
 
 > 基于 [VitePress](https://vitepress.dev/) 和 [@sugarat/theme](https://theme.sugarat.top/) 构建的个人博客
 

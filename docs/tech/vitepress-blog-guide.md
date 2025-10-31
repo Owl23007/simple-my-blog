@@ -7,6 +7,8 @@ tags:
   - 前端
 category: 技术笔记
 description: '详细介绍如何使用 VitePress 搭建个人博客，包括主题配置、部署等内容。'
+author: 沃以
+publish: true
 ---
 
 ## 前言

@@ -40,8 +40,8 @@ export default defineConfig({
     logo: '/avatar.png',
     //editLink: {
     // pattern:
-    //   'https://github.com/Owl23007/simple-my-blog/edit/master/docs/:path',
-    //text: '去 GitHub 上编辑内容'
+    //    'https://github.com/Owl23007/simple-my-blog/edit/master/docs/:path',
+    // text: '去 GitHub 上编辑内容'
     //},
     nav: [
       { text: '首页', link: '/' },

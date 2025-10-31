@@ -117,3 +117,23 @@
   color: var(--vp-c-text-3);
   font-size: 0.9rem;
 }
+
+// ============ 文章详情页样式 ============
+
+// 确保文章详情页的元信息显示
+.blog-article-meta,
+.blog-article-info,
+.article-metadata {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+// 文章标题下的元信息样式
+.VPDoc .container .content-container .content .vp-doc h1 + p,
+.VPDoc .content .vp-doc h1 + div {
+  color: var(--vp-c-text-2);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
