@@ -18,7 +18,7 @@ export default defineConfig({
   base,
   lang: 'zh-cn',
   title: '沃以的小站',
-  description: '如果人生只剩20分钟，不如烤个棉花糖吧',
+  description: '如果人生只剩22分钟，不如烤个棉花糖吧',
   lastUpdated: true,
   // 详见：https://vitepress.dev/zh/reference/site-config#head
   head: [
@@ -45,15 +45,6 @@ export default defineConfig({
     //},
     nav: [
       { text: '首页', link: '/' },
-      {
-        text: '文章',
-        items: [
-          { text: '技术笔记', link: '/tech/' },
-          { text: '生活随笔', link: '/life/' },
-          { text: '归档', link: '/pages/archives' },
-          { text: '标签', link: '/pages/tags' }
-        ]
-      },
       { text: '关于我', link: '/pages/about' }
     ],
     socialLinks: [
