@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 构建项目
+        run: pnpm build
+
+      - name: 生成变更日志
+        id: changelog
+        run: |
+          # 获取上一个标签
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          if [ -z "$PREVIOUS_TAG" ]; then
+            echo "changelog=首次发布" >> $GITHUB_OUTPUT
+          else
+            # 生成变更日志
+            CHANGELOG=$(git log $PREVIOUS_TAG..HEAD --oneline --pretty=format:"- %s (%h)" | head -20)
+            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGELOG" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 创建 Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            ## 🚀 版本发布 ${{ github.ref_name }}
+
+            ### 📝 更新内容
+            ${{ steps.changelog.outputs.changelog }}
+
+            ### 🔗 相关链接
+            - [博客地址](https://owl23007.github.io/simple-my-blog)
+            - [源代码](https://github.com/Owl23007/SimpleMyInfo)
+
+            ---
+            *此版本由 GitHub Actions 自动构建和发布*
+          draft: false
+          prerelease: false
+
+      - name: 构建产物归档
+        run: |
+          cd docs/.vitepress/dist
+          tar -czf ../../../blog-${{ github.ref_name }}.tar.gz .
+          cd ../../../
+
+      - name: 上传构建产物
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./blog-${{ github.ref_name }}.tar.gz
+          asset_name: blog-${{ github.ref_name }}.tar.gz
+          asset_content_type: application/gzip

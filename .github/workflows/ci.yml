@@ -1,0 +1,82 @@
+name: CI - Code Quality Check
+
+on:
+  push:
+    branches: [ develop, feature/*, hotfix/*, release/* ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+
+      - name: 获取 pnpm store 目录
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: 设置 pnpm 缓存
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 类型检查
+        run: pnpm run type-check
+
+      - name: Oxlint 检查
+        run: pnpm run lint
+
+      - name: Markdown 检查
+        run: pnpm run lint:md
+
+      - name: 构建检查
+        run: pnpm run build
+
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安全扫描
+        run: |
+          # 扫描依赖中的安全漏洞
+          npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: CodeQL 分析
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+        continue-on-error: true
+
+      - name: 执行 CodeQL 分析
+        uses: github/codeql-action/analyze@v3
+        continue-on-error: true
