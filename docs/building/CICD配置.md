@@ -15,22 +15,14 @@
 
 #### 🔍 代码质量检查 (`ci.yml`)
 
-- **触发条件**: 推送到 `develop`, `feature/*`, `hotfix/*`, `release/*` 分支
+- **触发条件**: 推送到 `develop`, `feature/*`, `hotfix/*`, `release/*` 分支或对 `master`, `develop` 的 PR
 - **功能**:
   - 多 Node.js 版本测试 (18, 20)
-  - 类型检查
-  - Lint 检查
-  - 构建检查
-  - 安全扫描
-  - CodeQL 分析
-
-#### 👀 预览部署 (`preview.yml`)
-
-- **触发条件**: 推送到 `develop` 分支或对 `master` 的 PR
-- **功能**:
-  - 构建预览版本
-  - PR 自动评论构建状态
-  - 可扩展支持预览环境部署
+  - TypeScript 类型检查
+  - Oxlint 代码规范检查
+  - Markdown 格式检查
+  - 构建验证
+  - 基础依赖安全检查
 
 #### 📦 版本发布 (`release.yml`)
 
@@ -51,13 +43,14 @@
 ### Develop 分支
 
 ```text
-推送到 develop → 触发 CI 检查 + 预览构建 → 可选预览部署
+推送到 develop → 触发 CI 检查 → 确保代码质量
 ```
 
 ### Feature 分支
 
 ```text
 推送到 feature/* → 触发 CI 检查 → 确保代码质量
+创建 PR 到 master/develop → 触发 CI 检查 → 代码审核
 ```
 
 ### Release 分支
