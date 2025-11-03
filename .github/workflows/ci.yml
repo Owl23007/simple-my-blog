@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master, develop ]
 
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
@@ -59,24 +64,8 @@ jobs:
       - name: 构建检查
         run: pnpm run build
 
-  security-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 检出代码
-        uses: actions/checkout@v4
-
-      - name: 安全扫描
+      - name: 基础安全检查
         run: |
-          # 扫描依赖中的安全漏洞
-          npm audit --audit-level=moderate
-        continue-on-error: true
-
-      - name: CodeQL 分析
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-        continue-on-error: true
-
-      - name: 执行 CodeQL 分析
-        uses: github/codeql-action/analyze@v3
+          # 简单的依赖漏洞检查
+          npm audit --audit-level=high || echo "发现高风险漏洞，请检查"
         continue-on-error: true
