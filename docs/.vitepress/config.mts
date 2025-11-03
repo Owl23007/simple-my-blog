@@ -45,6 +45,16 @@ export default defineConfig({
     //},
     nav: [
       { text: '首页', link: '/' },
+      { text: '随便写写', link: '/posts/' },
+      {
+        text: '系列',
+        items: [
+          { text: '系列文章', link: '/series/' },
+        ]
+      },
+
+      { text: '生活', link: '/life/' },
+      { text: '建站日记', link: '/building/' },
       { text: '关于我', link: '/pages/about' }
     ],
     socialLinks: [

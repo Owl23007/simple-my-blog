@@ -1,0 +1,71 @@
+name: CI - Code Quality Check
+
+on:
+  push:
+    branches: [ develop, feature/*, hotfix/*, release/* ]
+  pull_request:
+    branches: [ master, develop ]
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+
+      - name: 获取 pnpm store 目录
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: 设置 pnpm 缓存
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 安装依赖
+        run: pnpm install --no-frozen-lockfile
+
+      - name: 类型检查
+        run: pnpm run type-check
+
+      - name: Oxlint 检查
+        run: pnpm run lint
+
+      - name: Markdown 检查
+        run: pnpm run lint:md
+
+      - name: 构建检查
+        run: pnpm run build
+
+      - name: 基础安全检查
+        run: |
+          # 简单的依赖漏洞检查
+          npm audit --audit-level=high || echo "发现高风险漏洞，请检查"
+        continue-on-error: true

@@ -30,12 +30,4 @@ description: 关于博客和作者的介绍
 - 🐙 GitHub: [@Owl23007](https://github.com/Owl23007)
 - 💬 如有问题或建议，欢迎通过 GitHub Issues 与我交流
 
-## 博客技术栈
-
-本站基于以下技术构建：
-
-- [VitePress](https://vitepress.dev/) - 静态站点生成器
-- [@sugarat/theme](https://theme.sugarat.top/) - 博客主题
-- [GitHub Pages](https://pages.github.com/) - 托管平台
-
 ---
