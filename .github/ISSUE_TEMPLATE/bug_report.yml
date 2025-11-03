@@ -1,0 +1,61 @@
+name: 🐛 Bug 报告
+description: 报告一个 bug 以帮助改进项目
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您花时间填写这个 bug 报告！
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么？
+      description: 请详细描述遇到的问题
+      placeholder: 请告诉我们发生了什么！
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望的行为
+      description: 描述您期望发生的情况
+      placeholder: 应该发生什么？
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重现步骤
+      description: 详细的重现步骤
+      placeholder: |
+        1. 访问 '...'
+        2. 点击 '...'
+        3. 滚动到 '...'
+        4. 看到错误
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: 浏览器
+      description: 在哪个浏览器中遇到的问题？
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Microsoft Edge
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 附加信息
+      description: 任何其他相关信息
+      placeholder: 截图、日志等...
