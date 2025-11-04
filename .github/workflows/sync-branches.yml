@@ -1,0 +1,43 @@
+name: Sync Branches
+
+on:
+  push:
+    branches:
+      - master
+
+# 权限设置
+permissions:
+  contents: write  # 允许推送到其他分支
+
+jobs:
+  sync:
+    name: Sync master to develop and doc
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史记录以便合并
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync to develop branch
+        run: |
+          git fetch origin develop:develop || git branch develop
+          git checkout develop
+          git merge origin/master --no-edit --strategy-option=theirs || echo "Merge conflict or already up to date"
+          git push origin develop
+        continue-on-error: false
+
+      - name: Sync to doc branch
+        run: |
+          git fetch origin doc:doc || git branch doc
+          git checkout doc
+          git merge origin/master --no-edit --strategy-option=theirs || echo "Merge conflict or already up to date"
+          git push origin doc
+        continue-on-error: false
