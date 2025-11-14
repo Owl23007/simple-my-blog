@@ -19,7 +19,7 @@ const blogTheme = getThemeConfig({
   // search: false, // 如果要禁用搜索,取消注释这行
 
   // 默认关闭 markdown 图表支持(开启会增加一定的构建耗时)
-  // mermaid: false
+  mermaid: true,
 
   // 首页
   home: {
@@ -37,9 +37,9 @@ const blogTheme = getThemeConfig({
 
   // 推荐文章
   recommend: {
-    title: '🔍 相关文章',
-    nextText: '换一组',
-    pageSize: 6,
+    title: '相关文章',
+    nextText: '下一页',
+    pageSize: 5,
     style: 'sidebar',
     sort: 'date'
   },
