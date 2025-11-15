@@ -2,7 +2,8 @@ import BlogTheme from '@sugarat/theme'
 import type { Theme } from 'vitepress'
 
 // 导入自定义组件
-import InfoCard from './components/InfoCard.vue'
+import FolderTimeline from './components/FolderTimeline.vue'
+import Timeline from './components/Timeline.vue'
 
 // 自定义样式重载
 import './style.scss'
@@ -15,6 +16,7 @@ export default {
   extends: BlogTheme,
   enhanceApp({ app }) {
     // 注册全局组件
-    app.component('InfoCard', InfoCard)
+    app.component('Timeline', Timeline)
+    app.component('FolderTimeline', FolderTimeline)
   }
 } satisfies Theme

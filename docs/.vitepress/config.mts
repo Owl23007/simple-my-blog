@@ -25,6 +25,16 @@ export default defineConfig({
     // 配置网站的图标（显示在浏览器的 tab 上）
     ['link', { rel: 'icon', href: `${base}favicon.ico` }]
   ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+          silenceDeprecations: ['legacy-js-api']
+        }
+      }
+    }
+  },
   themeConfig: {
     // 展示 2,3 级标题在目录中
     outline: {
@@ -52,7 +62,7 @@ export default defineConfig({
           { text: '系列文章', link: '/series/' },
         ]
       },
-
+      { text: '🏷️ 标签', link: '/pages/tags' },
       { text: '生活', link: '/life/' },
       { text: '建站日记', link: '/building/' },
       { text: '关于我', link: '/pages/about' }
