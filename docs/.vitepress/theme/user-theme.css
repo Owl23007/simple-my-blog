@@ -49,3 +49,45 @@ html[theme],html[theme].dark {
   border-radius: 4px;
   overflow: hidden;
 }
+
+/* ============ Pagefind 搜索样式 ============ */
+
+/* 搜索输入框 */
+.pagefind-ui {
+  --pagefind-ui-primary: var(--vp-c-brand);
+  --pagefind-ui-border: var(--vp-c-divider);
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-text: var(--vp-c-text-1);
+  --pagefind-ui-background: var(--vp-c-bg-soft);
+  --pagefind-ui-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索按钮 */
+.pagefind-ui__input {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* 搜索结果 */
+.pagefind-ui__results {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* 搜索结果项 */
+.pagefind-ui__result {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+
+/* 搜索结果高亮 */
+.pagefind-ui__result-title {
+  font-weight: 600;
+  color: var(--vp-c-brand);
+}
+
+.pagefind-ui__result-excerpt {
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}

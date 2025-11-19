@@ -1,16 +1,11 @@
 import { defineConfig } from 'vitepress'
 
-// 导入主题的配置
-import { blogTheme } from './blog-theme'
-
 // 使用独立用户主页仓库 (github.io)
 const base = '/'
 
 // Vitepress 默认配置
 // 详见文档：https://vitepress.dev/reference/site-config
 export default defineConfig({
-  // 继承博客主题(@sugarat/theme)
-  extends: blogTheme,
   base,
   lang: 'zh-cn',
   title: '沃以的小站',
@@ -32,6 +27,10 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    // 搜索配置
+    search: {
+      provider: 'local'
+    },
     // 展示 2,3 级标题在目录中
     outline: {
       level: [2, 3],
@@ -58,7 +57,6 @@ export default defineConfig({
           { text: '系列文章', link: '/series/' },
         ]
       },
-      { text: '🏷️ 标签', link: '/pages/tags' },
       { text: '生活', link: '/life/' },
       { text: '建站日记', link: '/building/' },
       { text: '关于我', link: '/pages/about' }

@@ -1,15 +1,44 @@
 <template>
   <div class="timeline-wrapper">
-    <el-timeline>
-      <el-timeline-item v-for="(item, index) in sortedItems" :key="index"
-        :timestamp="item.date ? formatDate(item.date) : ''" placement="top" :icon="item.icon" :type="item.type"
-        :color="item.color" :size="item.size || 'normal'">
-        <a v-if="item.link" :href="item.link" class="timeline-content-link">
-          <div class="timeline-content">
+    <div class="timeline">
+      <div v-for="(item, index) in sortedItems" :key="index" class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-node" :style="{ backgroundColor: item.color || 'var(--vp-c-brand)' }">
+            <span v-if="item.icon" class="timeline-icon">{{ item.icon }}</span>
+          </div>
+          <div class="timeline-line" v-if="index < sortedItems.length - 1"></div>
+        </div>
+
+        <div class="timeline-content-wrapper">
+          <div v-if="item.date" class="timeline-timestamp">
+            {{ formatDate(item.date) }}
+          </div>
+
+          <a v-if="item.link" :href="item.link" class="timeline-content-link">
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div class="timeline-item-title">
+                  {{ item.title }}
+                  <span class="icon-arrow">→</span>
+                </div>
+                <div v-if="item.tags && item.tags.length" class="timeline-tags">
+                  <span v-for="tag in item.tags" :key="tag" class="tag">{{ tag }}</span>
+                </div>
+              </div>
+
+              <p v-if="item.description" class="timeline-item-description">
+                {{ item.description }}
+              </p>
+
+              <div v-if="item.category" class="timeline-category">
+                {{ item.category }}
+              </div>
+            </div>
+          </a>
+          <div v-else class="timeline-content">
             <div class="timeline-header">
               <div class="timeline-item-title">
                 {{ item.title }}
-                <span class="icon-arrow">→</span>
               </div>
               <div v-if="item.tags && item.tags.length" class="timeline-tags">
                 <span v-for="tag in item.tags" :key="tag" class="tag">{{ tag }}</span>
@@ -24,32 +53,13 @@
               {{ item.category }}
             </div>
           </div>
-        </a>
-        <div v-else class="timeline-content">
-          <div class="timeline-header">
-            <div class="timeline-item-title">
-              {{ item.title }}
-            </div>
-            <div v-if="item.tags && item.tags.length" class="timeline-tags">
-              <span v-for="tag in item.tags" :key="tag" class="tag">{{ tag }}</span>
-            </div>
-          </div>
-
-          <p v-if="item.description" class="timeline-item-description">
-            {{ item.description }}
-          </p>
-
-          <div v-if="item.category" class="timeline-category">
-            {{ item.category }}
-          </div>
         </div>
-      </el-timeline-item>
-    </el-timeline>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElTimeline, ElTimelineItem } from 'element-plus'
 import { computed } from 'vue'
 
 interface TimelineItem {
@@ -88,46 +98,80 @@ const formatDate = (date: string | Date) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .timeline-wrapper {
   width: 100%;
   padding: 20px 0;
+}
 
-  :deep(.el-timeline) {
-    padding: 0;
+.timeline {
+  position: relative;
+  padding: 0;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 24px;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
   }
+}
 
-  :deep(.el-timeline-item__content) {
-    padding: 0 0 0 16px;
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+  position: relative;
+}
+
+.timeline-node {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vp-c-brand), #5dade2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 2;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
   }
+}
 
-  :deep(.el-timeline-item__timestamp) {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--vp-c-brand);
-    letter-spacing: 0.5px;
-    min-width: 120px;
-  }
+.timeline-icon {
+  font-size: 8px;
+  color: white;
+}
 
-  :deep(.el-timeline-item__node) {
-    background: linear-gradient(135deg, var(--vp-c-brand), #5dade2);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  background: var(--vp-c-divider);
+  margin-top: 4px;
+  transition: border-color 0.3s ease;
+}
 
-    &:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      transform: scale(1.1);
-    }
-  }
+.timeline-content-wrapper {
+  flex: 1;
+  padding-left: 24px;
+  margin-top: -8px;
+}
 
-  :deep(.el-timeline-item__line) {
-    border-left: 2px solid var(--vp-c-divider);
-    transition: border-color 0.3s ease;
-  }
-
-  :deep(.el-timeline-item:last-child .el-timeline-item__line) {
-    border-left: 2px solid transparent;
-  }
+.timeline-timestamp {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-brand);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  min-width: 120px;
 }
 
 .timeline-content-link {
@@ -236,11 +280,13 @@ const formatDate = (date: string | Date) => {
 }
 
 @media (max-width: 768px) {
-  .timeline-wrapper {
-    :deep(.el-timeline-item__timestamp) {
-      font-size: 12px;
-      min-width: 100px;
-    }
+  .timeline-content-wrapper {
+    padding-left: 16px;
+  }
+
+  .timeline-timestamp {
+    font-size: 12px;
+    min-width: 100px;
   }
 
   .timeline-content {
