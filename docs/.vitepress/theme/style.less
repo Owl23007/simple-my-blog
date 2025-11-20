@@ -59,6 +59,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
+<<<<<<< HEAD
   background: var(--vp-scrollbar-track);
 }
 
@@ -68,6 +69,19 @@ html {
 
   &:hover {
     background: var(--vp-scrollbar-thumb-hover);
+=======
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--vp-c-brand);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+
+  &:hover {
+    background-color: var(--vp-c-brand-dark);
+>>>>>>> doc
   }
 }
 
@@ -78,7 +92,11 @@ html {
 
 // Firefox 滚动条样式
 * {
+<<<<<<< HEAD
   scrollbar-color: var(--vp-scrollbar-thumb) var(--vp-scrollbar-track);
+=======
+  scrollbar-color: var(--vp-c-brand) transparent;
+>>>>>>> doc
   scrollbar-width: thin;
 }
 
