@@ -84,7 +84,7 @@
   position: relative;
   background-image: url(./assets/bg.webp);
   background-size: cover;
-  background-position: center;
+  background-position: center calc(100%);
   background-repeat: no-repeat;
   overflow: hidden;
 
@@ -115,10 +115,10 @@
 .VPHomeHero .image-src {
   border-radius: 50%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
   }
 }
 
