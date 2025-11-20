@@ -70,6 +70,10 @@ export default defineConfig({
       {
         icon: 'github',
         link: 'https://github.com/Owl23007/simple-my-blog'
+      },
+      {
+        icon: 'bilibili',
+        link: 'https://space.bilibili.com/396694127'
       }
     ],
     footer: {

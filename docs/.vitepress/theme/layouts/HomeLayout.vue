@@ -55,8 +55,8 @@
                   </div>
                   <!-- Floating Badge -->
                   <div class="floating-badge">
-                    <span class="emoji">🚀</span>
-                    <span class="text">探索中...</span>
+                    <span class="emoji">📍</span>
+                    <span class="text">武汉</span>
                   </div>
                 </div>
               </div>
@@ -67,27 +67,57 @@
         <!-- Featured Posts Section -->
         <section class="featured-section">
           <div class="container">
-            <div class="section-header">
-              <div>
-                <h2 class="section-title">最新文章</h2>
-                <div class="title-underline"></div>
+            <div class="featured-layout">
+              <div class="featured-main">
+                <div class="section-header">
+                  <div>
+                    <h2 class="section-title">最新文章</h2>
+                    <div class="title-underline"></div>
+                  </div>
+                  <a href="/posts/" class="view-all">
+                    查看全部
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3">
+                      </path>
+                    </svg>
+                  </a>
+                </div>
+
+                <div class="posts-grid">
+                  <ArticleCard v-for="(article, index) in featuredPosts" :key="article.link" :article="article"
+                    class="post-card" :style="{ animationDelay: `${index * 100}ms` }" />
+                </div>
+
+                <div class="mobile-view-all">
+                  <a href="/posts/">查看全部文章 →</a>
+                </div>
               </div>
-              <a href="/posts/" class="view-all">
-                查看全部
-                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
-                  </path>
-                </svg>
-              </a>
-            </div>
 
-            <div class="posts-grid">
-              <ArticleCard v-for="(article, index) in featuredPosts" :key="article.link" :article="article"
-                class="post-card" :style="{ animationDelay: `${index * 100}ms` }" />
-            </div>
-
-            <div class="mobile-view-all">
-              <a href="/posts/">查看全部文章 →</a>
+              <!-- Sidebar -->
+              <div class="featured-sidebar">
+                <div class="status-card">
+                  <h3 class="status-title">网站状态</h3>
+                  <div class="status-list">
+                    <div class="status-item">
+                      <span class="label">文章总数</span>
+                      <span class="value">{{ totalPosts }}</span>
+                    </div>
+                    <div class="status-item">
+                      <span class="label">系列专栏</span>
+                      <span class="value">{{ totalSeries }}</span>
+                    </div>
+                    <div class="status-item">
+                      <span class="label">标签数量</span>
+                      <span class="value">{{ totalTags }}</span>
+                    </div>
+                    <div class="status-item">
+                      <span class="label">运行天数</span>
+                      <span class="value">{{ runDays }} 天</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -159,6 +189,13 @@ const totalTags = computed(() => {
     post.tags?.forEach(tag => tags.add(tag))
   })
   return tags.size
+})
+
+// 运行时间
+const startDate = new Date('2025-10-25')
+const runDays = computed(() => {
+  const diff = new Date().getTime() - startDate.getTime()
+  return Math.floor(diff / (1000 * 60 * 60 * 24))
 })
 </script>
 
@@ -454,13 +491,13 @@ const totalTags = computed(() => {
 .floating-badge {
   position: absolute;
   bottom: -1rem;
-  right: -1rem;
+  right: -2rem;
   background-color: #fff;
   padding: 0.75rem;
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid #f3f4f6;
-  animation: bounce 1s infinite;
+  animation: bounce 2s infinite alternate;
   transition: background-color 0.5s;
 
   .dark & {
@@ -482,7 +519,7 @@ const totalTags = computed(() => {
 }
 
 .featured-section {
-  padding-top: 6rem;
+  padding-top: 2rem;
   padding-bottom: 6rem;
   background-color: #f9fafb; // gray-50
   transition: background-color 0.5s;
@@ -493,11 +530,11 @@ const totalTags = computed(() => {
 }
 
 .container {
-  max-width: 72rem; // max-w-6xl
+  max-width: 81rem; // max-w-6xl
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .section-header {
@@ -508,7 +545,7 @@ const totalTags = computed(() => {
 }
 
 .section-title {
-  font-size: 1.875rem; // text-3xl
+  font-size: 1.875rem !important; // text-3xl
   font-weight: 700;
   color: #111827;
   margin-bottom: 1rem;
@@ -564,14 +601,113 @@ const totalTags = computed(() => {
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.featured-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.featured-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured-sidebar {
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    width: 300px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.status-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.5s, border-color 0.5s;
+  border: 1px solid transparent;
+
+  .dark & {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+}
+
+.status-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #111827;
+  transition: color 0.5s;
+
+  .dark & {
+    color: #fff;
+  }
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  transition: border-color 0.5s;
+
+  .dark & {
+    border-color: #374151;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.label {
+  color: #6b7280;
+  font-size: 0.95rem;
+  transition: color 0.5s;
+
+  .dark & {
+    color: #9ca3af;
+  }
+}
+
+.value {
+  font-weight: 600;
+  color: #111827;
+  font-family: monospace;
+  font-size: 1.1rem;
+  transition: color 0.5s;
+
+  .dark & {
+    color: #f3f4f6;
   }
 }
 
