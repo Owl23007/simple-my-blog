@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { computed } from 'vue'
+import { data as allSeries } from '../data/series.data'
 
 const { Layout } = DefaultTheme
 
@@ -15,14 +16,12 @@ const title = '📚 系列文章'
 const description = '成体系的技术学习专栏，按照主题深入展开'
 
 const seriesItems = computed((): Series[] => {
-  return [
-    {
-      name: '软件设计体系结构',
-      title: '🧭 软件设计与体系结构',
-      description: '介绍设计原则、UML 建模与12种常用设计模式。',
-      link: '/series/软件设计体系结构/'
-    }
-  ]
+  return allSeries.map(series => ({
+    name: series.name,
+    title: series.title,
+    description: series.description,
+    link: series.link
+  }))
 })
 </script>
 

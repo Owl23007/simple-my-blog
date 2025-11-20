@@ -1,5 +1,6 @@
 <template>
-  <router-link v-if="article.link" :to="article.link" class="article-card group">
+  <!-- Card with link -->
+  <a v-if="article.link" :href="article.link" class="article-card group">
     <!-- Hover Gradient Background -->
     <div class="card-bg-hover"></div>
 
@@ -42,11 +43,52 @@
         </span>
       </div>
     </div>
-  </router-link>
+  </a>
 
-  <!-- Fallback for non-link cards (if any) -->
-  <div v-else class="article-card fallback">
-    <h3 class="card-title">{{ article.title }}</h3>
+  <!-- Card without link (fallback) -->
+  <div v-else class="article-card group fallback">
+    <!-- Hover Gradient Background -->
+    <div class="card-bg-hover"></div>
+
+    <div class="card-content">
+      <!-- Header -->
+      <div class="card-header">
+        <h3 class="card-title">
+          {{ article.title }}
+        </h3>
+      </div>
+
+      <div v-if="article.date" class="card-date">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        {{ formatDate(article.date) }}
+      </div>
+
+      <!-- Description -->
+      <p v-if="article.description" class="card-desc">
+        {{ article.description }}
+      </p>
+
+      <!-- Footer: Tags & Arrow -->
+      <div class="card-footer">
+        <div class="card-tags">
+          <span v-for="tag in article.tags?.slice(0, 2)" :key="tag" class="tag">
+            #{{ tag }}
+          </span>
+          <span v-if="article.tags && article.tags.length > 2" class="tag-more">
+            +{{ article.tags.length - 2 }}
+          </span>
+        </div>
+
+        <span class="card-arrow">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,6 +126,8 @@ const formatDate = (date: string | Date) => {
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
 
   .dark & {
     border-color: #1f2937; // gray-800
@@ -97,6 +141,20 @@ const formatDate = (date: string | Date) => {
 
     .dark & {
       border-color: #1e40af; // blue-800
+    }
+  }
+
+  &.fallback {
+    cursor: default;
+
+    &:hover {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-color: #f3f4f6;
+      transform: none;
+
+      .dark & {
+        border-color: #1f2937;
+      }
     }
   }
 }

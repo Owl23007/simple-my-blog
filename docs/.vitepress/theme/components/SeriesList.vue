@@ -4,11 +4,11 @@
       <a :href="series.link" class="series-link">
         <div class="series-icon-wrapper">
           <div class="series-icon-bg"></div>
-          <span class="series-icon">{{ series.title.split(' ')[0] }}</span>
+          <span class="series-icon">{{ getSeriesIcon(series.title) }}</span>
         </div>
 
         <div class="series-content">
-          <h3 class="series-title">{{ series.title.replace(/^.\s/, '') }}</h3>
+          <h3 class="series-title">{{ getSeriesTitle(series.title) }}</h3>
           <p v-if="series.description" class="series-description">
             {{ series.description }}
           </p>
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { data as allSeries } from '../data/series.data'
 
 interface Series {
   name: string
@@ -38,15 +39,29 @@ interface Series {
 }
 
 const seriesItems = computed((): Series[] => {
-  return [
-    {
-      name: '软件设计体系结构',
-      title: '🧭 软件设计与体系结构',
-      description: '介绍设计原则、UML 建模与12种常用设计模式。',
-      link: '/series/软件设计体系结构/'
-    }
-  ]
+  return allSeries.map(series => ({
+    name: series.name,
+    title: series.title,
+    description: series.description,
+    link: series.link
+  }))
 })
+
+const getSeriesIcon = (title: string) => {
+  // 尝试匹配 "图标 标题" 的格式
+  const match = title.match(/^(\S+)\s+(.+)/)
+  if (match) return match[1]
+  // 如果没有空格分隔，取第一个字符作为图标
+  return title.charAt(0)
+}
+
+const getSeriesTitle = (title: string) => {
+  // 尝试匹配 "图标 标题" 的格式
+  const match = title.match(/^(\S+)\s+(.+)/)
+  if (match) return match[2]
+  // 如果没有空格分隔，返回完整标题
+  return title
+}
 </script>
 
 <style scoped lang="less">

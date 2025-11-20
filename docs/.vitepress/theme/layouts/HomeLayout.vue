@@ -142,39 +142,13 @@ import DefaultTheme from 'vitepress/theme'
 import { computed } from 'vue'
 import ArticleCard from '../components/ArticleCard.vue'
 import SeriesList from '../components/SeriesList.vue'
+import { data as allPosts } from '../data/posts.data'
 
 const { Layout: DefaultLayout } = DefaultTheme
 
-// 文章数据
-const allPosts = [
-  {
-    title: '操作系统调度的机制',
-    date: '2025-11-03',
-    description: '两级调度、抢占性与多级反馈队列的解析，深入探讨操作系统核心机制。',
-    link: '/posts/操作系统调度的机制',
-    tags: ['操作系统', '调度算法', 'CPU调度']
-  },
-  {
-    title: 'Java 中的位运算',
-    date: '2025-10-31',
-    description: '深入理解 Java 中的位运算符及其常见应用场景，包括按位与、或、异或、取反、左移、右移等操作。',
-    link: '/posts/位运算',
-    tags: ['Java', '位运算']
-  },
-  {
-    title: '我的第一篇博客',
-    date: '2025-10-25',
-    description: '这是我的第一篇博客文章，介绍如何使用VitePress搭建个人博客，开启技术写作之旅。',
-    link: '/posts/我的第一篇博客',
-    tags: ['博客', 'VitePress', '技术']
-  }
-]
-
 // 获取最近的3篇文章
 const featuredPosts = computed(() => {
-  return allPosts
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
+  return allPosts.slice(0, 4)
 })
 
 // 计算统计数据
@@ -189,7 +163,7 @@ const totalTags = computed(() => {
 })
 
 // 运行时间
-const startDate = new Date('2025-10-25')
+const startDate = new Date('2025-10-19')
 const runDays = computed(() => {
   const diff = new Date().getTime() - startDate.getTime()
   return Math.floor(diff / (1000 * 60 * 60 * 24))
