@@ -60,7 +60,7 @@ graph TD
 
 **触发条件**: 推送到 `master` 分支
 **运行环境**: Ubuntu Latest + Node.js 20.x + pnpm
-**部署地址**: <https://owl23007.github.io/simple-my-blog>
+**部署地址**: <https://owl23007.github.io/>
 
 **执行步骤**:
 
@@ -82,7 +82,9 @@ graph TD
 - ✅ Markdown 格式验证
 - ✅ 构建成功性测试
 - ✅ 依赖安全扫描
-- ✅ CodeQL 安全分析### 📦 版本发布工作流 (release.yml)
+- ✅ CodeQL 安全分析
+
+### 📦 版本发布工作流 (release.yml)
 
 **触发条件**: 推送版本标签 (`v*`)
 **自动功能**: 生成变更日志 + 创建 GitHub Release + 上传构建产物
