@@ -1,48 +1,51 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import mermaid from 'mermaid'
+import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { computed, onMounted, watch } from 'vue'
 import HomeLayout from './HomeLayout.vue'
 import NotFound from './NotFound.vue'
 import SeriesLayout from './SeriesLayout.vue'
 
+// ============ Data & Router ============
 const { page, frontmatter, isDark } = useData()
+const router = useRouter()
 const { Layout } = DefaultTheme
 
-// 部分 VitePress 版本的 PageData 不包含 isNotFound 类型定义，这里做一个兼容判断
+// ============ Computed ============
 const isNotFound = computed(() => {
   const p: any = page.value
   if (typeof p.isNotFound === 'boolean') return p.isNotFound
   return p.relativePath === '404.md' || frontmatter.value.layout === '404'
 })
 
-// 安全获取 frontmatter.layout
 const layout = computed(() => (frontmatter.value as any)?.layout)
 
-// 检查是否是首页
 const isHomePage = computed(() => {
   const p: any = page.value
   return p.relativePath === 'index.md' || p.filePath?.endsWith('index.md')
 })
 
-// 手动处理暗色模式类
-onMounted(() => {
-  updateDarkMode()
-})
-
-watch(isDark, () => {
-  updateDarkMode()
-})
-
+// ============ Dark Mode ============
 function updateDarkMode() {
   const html = document.documentElement
-  if (isDark.value) {
-    html.classList.add('dark')
-  } else {
-    html.classList.remove('dark')
+  isDark.value ? html.classList.add('dark') : html.classList.remove('dark')
+}
+
+onMounted(() => updateDarkMode())
+watch(isDark, () => updateDarkMode())
+
+// ============ Mermaid ============
+async function renderMermaid() {
+  await new Promise(resolve => setTimeout(resolve, 100))
+  try {
+    await mermaid.run()
+  } catch (e) {
+    console.error('Failed to render mermaid:', e)
   }
 }
 
+watch(() => router.route.path, renderMermaid)
 </script>
 
 <template>

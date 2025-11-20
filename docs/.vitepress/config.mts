@@ -1,8 +1,27 @@
-import path from 'path'
 import { defineConfig } from 'vitepress'
+import taskLists from 'markdown-it-task-lists'
 
 // 使用独立用户主页仓库 (github.io)
 const base = '/'
+
+// Mermaid markdown-it 插件 - 在构建时标记，由客户端 mermaid 库渲染
+const mermaidPlugin = (md: any) => {
+  const defaultFenceRenderer = md.renderer.rules.fence.bind(md.renderer.rules)
+  let mermaidId = 0
+
+  md.renderer.rules.fence = (tokens: any, idx: number, options: any, env: any, self: any) => {
+    const token = tokens[idx]
+    const info = token.info.trim()
+
+    if (info === 'mermaid') {
+      const code = token.content.trim()
+      // 使用 pre.mermaid 标签，mermaid 库会识别并处理
+      return `<pre class="mermaid mermaid-${mermaidId++}">${code}</pre>\n`
+    }
+
+    return defaultFenceRenderer(tokens, idx, options, env, self)
+  }
+}
 
 // Vitepress 默认配置
 // 详见文档：https://vitepress.dev/reference/site-config
@@ -12,14 +31,18 @@ export default defineConfig({
   title: '沃以的小站',
   description: '如果人生只剩22分钟，不如烤个棉花糖吧',
   lastUpdated: true,
-  // 详见：https://vitepress.dev/zh/reference/site-config#head
+  markdown: {
+    config(md) {
+      md.use(taskLists)
+      md.use(mermaidPlugin)
+    },
+  },
   head: [
-    // 配置网站的图标（显示在浏览器的 tab 上）
+    // 配置网站的图标
     ['link', { rel: 'icon', href: `${base}favicon.ico` }]
   ],
   vite: {
     css: {
-      postcss: './postcss.config.js',
       preprocessorOptions: {
         less: {
           api: 'modern-compiler',
