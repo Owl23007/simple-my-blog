@@ -1,0 +1,104 @@
+/* 主页美化 - 额外装饰效果 */
+
+:root {
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* VPHome 背景视差效果 */
+.VPHome {
+  position: relative;
+  background-attachment: fixed;
+}
+
+/* 首页容器增强 */
+.VPHomeHero {
+  background: linear-gradient(180deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    transparent 50%);
+}
+
+html[theme].dark .VPHomeHero {
+  background: linear-gradient(180deg,
+    rgba(245, 158, 11, 0.03) 0%,
+    transparent 50%);
+}
+
+/* Hero 内容容器增强 */
+.VPHomeHero .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* 增强 Feature 容器 */
+.VPFeatures {
+  position: relative;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(59, 130, 246, 0.03) 50%,
+    transparent 100%);
+}
+
+html[theme].dark .VPFeatures {
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 158, 11, 0.02) 50%,
+    transparent 100%);
+}
+
+/* Feature 容器 */
+.VPFeatures .container {
+  position: relative;
+}
+
+/* Feature Grid 增强 */
+.VPFeatures .grid {
+  gap: 24px;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .VPHomeHero .name {
+    font-size: 2.5rem;
+  }
+
+  .VPHomeHero .text {
+    font-size: 1.2rem;
+  }
+
+  .VPHomeHero .tagline {
+    font-size: 1rem;
+  }
+
+  .VPHomeHero .image-src {
+    width: 150px;
+    height: 150px;
+  }
+
+  .VPFeature {
+    padding: 24px !important;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: more) {
+  .VPHome {
+    background: var(--vp-c-bg);
+  }
+
+  .VPFeature {
+    border-width: 2px;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .VPHomeHero,
+  .VPHomeHero .image-src,
+  .VPFeature,
+  .VPButton {
+    animation: none !important;
+    transition: none !important;
+  }
+}

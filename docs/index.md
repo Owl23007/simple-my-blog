@@ -27,3 +27,5 @@ features:
     details: 记录生活中的趣事、感悟以及那些值得纪念的瞬间。
     link: /life/
 ---
+
+<HomeHeroEnhance />

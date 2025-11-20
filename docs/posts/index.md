@@ -1,6 +1,7 @@
 ---
 title: 随写
 description: 日常记录、随想和未分类的内容
+lastUpdated: false
 ---
 
 # ✍️ 随写
@@ -16,7 +17,7 @@ description: 日常记录、随想和未分类的内容
 
 ## 📋 文章列表
 
-这里会展示最近的随写内容，按时间倒序排列。
+<PostsList />
 
 ---
 
