@@ -92,6 +92,17 @@
                 <div class="mobile-view-all">
                   <a href="/posts/">查看全部文章 →</a>
                 </div>
+
+                <!-- Series Section -->
+                <div class="series-wrapper">
+                  <div class="section-header">
+                    <div>
+                      <h2 class="section-title">系列专栏</h2>
+                      <div class="title-underline"></div>
+                    </div>
+                  </div>
+                  <SeriesList />
+                </div>
               </div>
 
               <!-- Sidebar -->
@@ -119,20 +130,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- Series Section -->
-        <section class="series-section">
-          <div class="container">
-            <div class="section-header-center">
-              <h2 class="section-title">系列专栏</h2>
-              <p class="section-desc">
-                系统性的知识整理，构建完整的知识体系
-              </p>
-            </div>
-
-            <SeriesList />
           </div>
         </section>
       </div>
@@ -731,32 +728,8 @@ const runDays = computed(() => {
   }
 }
 
-.series-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  background-color: #fff;
-  transition: background-color 0.5s;
-
-  .dark & {
-    background-color: #030712;
-  }
-}
-
-.section-header-center {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-desc {
-  color: #4b5563;
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
-  transition: color 0.5s;
-
-  .dark & {
-    color: #9ca3af;
-  }
+.series-wrapper {
+  margin-top: 4rem;
 }
 
 .stats-section {
@@ -824,5 +797,13 @@ const runDays = computed(() => {
     transform: none;
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
+}
+</style>
+
+<style>
+/* 覆盖 VitePress 默认主题的首页底部间距 */
+.VPHome {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 </style>

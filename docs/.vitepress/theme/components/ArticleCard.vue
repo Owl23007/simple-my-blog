@@ -261,7 +261,7 @@ const formatDate = (date: string | Date) => {
   .group:hover & {
     background-color: #2563eb; // blue-600
     color: #fff;
-    transform: rotate(45deg);
+    transform: translateX(0.25rem);
   }
 
   .icon {
