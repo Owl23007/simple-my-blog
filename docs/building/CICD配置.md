@@ -1,5 +1,6 @@
 ---
 title: CICD配置
+date: 2025-11-04
 description: 本站使用的CI/CD配置
 ---
 # CI/CD 配置
