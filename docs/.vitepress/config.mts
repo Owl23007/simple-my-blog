@@ -30,6 +30,8 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    // 启用暗色模式切换器
+    appearance: true,
     // 搜索配置
     search: {
       provider: 'local'

@@ -132,7 +132,7 @@ const formatDate = (date: string | Date) => {
   height: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--vp-c-brand), #5dade2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -141,8 +141,8 @@ const formatDate = (date: string | Date) => {
   z-index: 2;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    transform: scale(1.2);
   }
 }
 
@@ -156,7 +156,7 @@ const formatDate = (date: string | Date) => {
   flex: 1;
   background: var(--vp-c-divider);
   margin-top: 4px;
-  transition: border-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .timeline-content-wrapper {
@@ -172,6 +172,7 @@ const formatDate = (date: string | Date) => {
   letter-spacing: 0.5px;
   margin-bottom: 4px;
   min-width: 120px;
+  transition: color 0.3s ease;
 }
 
 .timeline-content-link {
@@ -181,7 +182,7 @@ const formatDate = (date: string | Date) => {
 
   &:hover .timeline-content {
     border-color: var(--vp-c-brand);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
     transform: translateY(-2px);
   }
 
@@ -217,7 +218,7 @@ const formatDate = (date: string | Date) => {
   font-size: 16px;
   font-weight: 600;
   color: var(--vp-c-text-1);
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   word-break: break-word;
 }
 
@@ -234,6 +235,7 @@ const formatDate = (date: string | Date) => {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 6px;
+  transition: color 0.3s ease;
 }
 
 .timeline-tags {

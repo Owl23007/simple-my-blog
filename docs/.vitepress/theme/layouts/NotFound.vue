@@ -88,6 +88,7 @@ html.dark {
   padding: 24px;
   overflow: hidden;
   background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+  transition: background 0.5s ease;
 }
 
 /* 背景装饰圆形 */
@@ -97,6 +98,7 @@ html.dark {
   border-radius: 50%;
   content: '';
   filter: blur(50px);
+  transition: background 0.5s ease, opacity 0.5s ease;
 }
 
 .not-found-container::before {
@@ -140,7 +142,7 @@ html.dark {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -2px;
-  text-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
 }
 
 /* 引言文本 */
@@ -151,6 +153,7 @@ html.dark {
   margin: 0 0 16px 0;
   letter-spacing: 0.5px;
   animation: slideDown 0.6s ease-out 0.2s both;
+  transition: color 0.3s ease;
 }
 
 /* 描述文本 */
@@ -160,6 +163,7 @@ html.dark {
   margin: 0 0 56px 0;
   line-height: 1.6;
   animation: slideDown 0.6s ease-out 0.3s both;
+  transition: color 0.3s ease;
 }
 
 /* 按钮容器 */
@@ -188,7 +192,7 @@ html.dark {
   overflow: hidden;
   background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
   color: var(--vp-button-brand-text);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
 }
 
 .not-found-btn-primary::before {
@@ -202,7 +206,7 @@ html.dark {
 
 .not-found-btn-primary:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25);
 }
 
 .not-found-btn-primary:hover::before {
@@ -245,7 +249,7 @@ html.dark {
   background-color: var(--vp-c-bg-mute);
   border-color: var(--vp-c-brand-1);
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
   color: var(--vp-c-brand-1);
 }
 

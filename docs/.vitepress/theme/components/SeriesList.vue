@@ -44,11 +44,13 @@ const seriesItems = computed((): Series[] => {
   border-radius: 8px;
   border: 1px solid var(--vp-c-divider);
   transition: all 0.3s ease;
+  background-color: var(--vp-c-bg);
 }
 
 .series-item:hover {
   border-color: var(--vp-c-brand);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
 }
 
 .series-link {
@@ -56,6 +58,7 @@ const seriesItems = computed((): Series[] => {
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
+  transition: color 0.3s ease;
 }
 
 .series-title {
@@ -63,11 +66,13 @@ const seriesItems = computed((): Series[] => {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--vp-c-brand);
+  transition: color 0.3s ease;
 }
 
 .series-description {
   margin: 0;
   color: var(--vp-c-text-2);
   font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 </style>
