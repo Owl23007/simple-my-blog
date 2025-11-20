@@ -8,6 +8,7 @@ import SeriesList from './components/SeriesList.vue'
 import Timeline from './components/Timeline.vue'
 
 import './style.less'
+import './tailwind.css'
 
 export default {
   Layout,

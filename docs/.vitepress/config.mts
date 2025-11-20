@@ -18,8 +18,9 @@ export default defineConfig({
   ],
   vite: {
     css: {
+      postcss: './postcss.config.js',
       preprocessorOptions: {
-        scss: {
+        less: {
           api: 'modern-compiler',
           silenceDeprecations: ['legacy-js-api']
         }
