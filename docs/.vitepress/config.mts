@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
 import path from 'path'
+import { defineConfig } from 'vitepress'
 
 // 使用独立用户主页仓库 (github.io)
 const base = '/'
@@ -30,8 +30,6 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    // 启用暗色模式切换器
-    appearance: true,
     // 搜索配置
     search: {
       provider: 'local'
@@ -85,7 +83,7 @@ export default defineConfig({
     ],
     footer: {
       message: '基于 MIT 许可发布',
-      copyright: 'Copyright © 2024-present 沃以'
+      copyright: 'Copyright © 2024-present 沃以 | <a href="https://beian.miit.gov.cn/">鄂ICP备2024073383号-1</a>'
     },
     docFooter: {
       prev: '上一篇',
