@@ -48,10 +48,46 @@
 // ============ VPHome 样式 ============
 
 .VPHome {
+  // 定义遮罩样式
+  background: radial-gradient(ellipse,
+    rgba(var(--bg-gradient-home), 1) 0%,
+    rgba(var(--bg-gradient-home), 0) 150%);
+
+  // 自定义首页背景图
+  &::before {
+    background-image: url(./assets/bg.webp);
+    background-size: cover;
+    background-position: center 100%;
+    background-repeat: no-repeat;
+  }
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+
+  // 可选：如果希望在深色模式下也保持一致的视觉效果，可以单独定义
+  html[theme].dark & {
+    background: radial-gradient(
+      ellipse,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+}
+
+// ============ 主页组件样式优化 ============
+
+/* 主页 Hero 背景样式 */
+.VPHomeHero {
   position: relative;
+  background-image: url(./assets/bg.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 
-  // 创建多层背景效果
   &::before {
     content: '';
     position: absolute;
@@ -59,280 +95,43 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-      var(--vp-c-bg) 0%,
-      var(--vp-c-bg-soft) 50%,
-      var(--vp-c-bg) 100%);
-    z-index: -2;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle,
-      rgba(59, 130, 246, 0.1) 0%,
-      transparent 70%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: float 15s ease-in-out infinite;
-  }
-
-  html[theme].dark & {
-    &::after {
-      background: radial-gradient(circle,
-        rgba(245, 158, 11, 0.1) 0%,
-        transparent 70%);
+  html.dark & {
+    &::before {
+      background: rgba(0, 0, 0, 0.5);
     }
   }
-
-  // 背景图案
-  background-image:
-    radial-gradient(ellipse 800px 600px at 50% 0%,
-      rgba(59, 130, 246, 0.08) 0%,
-      transparent 70%);
-
-  html[theme].dark & {
-    background-image:
-      radial-gradient(ellipse 800px 600px at 50% 0%,
-        rgba(245, 158, 11, 0.08) 0%,
-        transparent 70%);
-  }
 }
 
-// ============ 浮动动画 ============
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-  }
-  33% {
-    transform: translateY(-30px) translateX(20px);
-  }
-  66% {
-    transform: translateY(15px) translateX(-15px);
-  }
-}
-
-// ============ 主页组件样式优化 ============
-
-/* 主页 Hero 区域 */
-.VPHomeHero {
+.VPHomeHero > * {
   position: relative;
-  z-index: 1;
-  padding: 60px 24px !important;
-
-  .container {
-    max-width: 1200px;
-  }
-}
-
-/* Hero 标题和文本 */
-.VPHomeHero .main {
-  animation: slideInDown 0.8s ease-out;
-}
-
-.VPHomeHero .name {
-  font-size: 3.5rem;
-  font-weight: 900;
-  background: linear-gradient(135deg,
-    var(--vp-c-brand-1) 0%,
-    var(--vp-c-brand-3) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 12px;
-}
-
-.VPHomeHero .text {
-  font-size: 1.5rem;
-  color: var(--vp-c-text-1);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.VPHomeHero .tagline {
-  font-size: 1.2rem;
-  color: var(--vp-c-text-2);
-  margin-bottom: 24px;
-  font-style: italic;
+  z-index: 2;
 }
 
 /* 主页 Hero 图片样式优化 */
 .VPHomeHero .image-src {
   border-radius: 50%;
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3),
-              0 0 0 1px rgba(59, 130, 246, 0.1);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: slideInUp 0.8s ease-out;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-
-  html[theme].dark & {
-    box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2),
-                0 0 0 1px rgba(245, 158, 11, 0.1);
-  }
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.08) translateY(-5px);
-    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4),
-                0 0 0 1px rgba(59, 130, 246, 0.2);
-
-    html[theme].dark & {
-      box-shadow: 0 12px 48px rgba(245, 158, 11, 0.3),
-                  0 0 0 1px rgba(245, 158, 11, 0.2);
-    }
-  }
-}
-
-/* Hero 按钮组 */
-.VPHomeHero .actions {
-  margin-top: 32px;
-}
-
-.VPButton {
-  transition: all 0.3s ease;
-  font-weight: 600;
-  padding: 12px 28px !important;
-  border-radius: 8px !important;
-
-  &.brand {
-    background: linear-gradient(135deg,
-      var(--vp-c-brand-1) 0%,
-      var(--vp-c-brand-2) 100%) !important;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
-
-    html[theme].dark & {
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
-    }
-  }
-
-  &.alt {
-    border: 2px solid var(--vp-c-brand-1) !important;
-    color: var(--vp-c-brand-1) !important;
-    background: rgba(59, 130, 246, 0.05) !important;
-
-    html[theme].dark & {
-      border-color: var(--vp-c-brand-1) !important;
-      background: rgba(245, 158, 11, 0.05) !important;
-    }
-
-    &:hover {
-      background: rgba(59, 130, 246, 0.15) !important;
-      transform: translateY(-2px);
-
-      html[theme].dark & {
-        background: rgba(245, 158, 11, 0.15) !important;
-      }
-    }
+    transform: scale(1.05) rotate(5deg);
   }
 }
 
 /* 主页 Feature 卡片样式优化 */
-.VPFeatures {
-  position: relative;
-  z-index: 1;
-  padding: 80px 24px;
-  margin-top: 60px;
-}
-
 .VPFeature {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--vp-c-border);
   border-radius: 12px;
-  padding: 32px !important;
-  background: var(--vp-c-bg-soft);
-  position: relative;
-  overflow: hidden;
-
-  // 卡片背景效果
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle,
-      rgba(59, 130, 246, 0.1) 0%,
-      transparent 70%);
-    border-radius: 50%;
-    z-index: -1;
-    transition: all 0.6s ease;
-  }
-
-  html[theme].dark & {
-    &::before {
-      background: radial-gradient(circle,
-        rgba(245, 158, 11, 0.08) 0%,
-        transparent 70%);
-    }
-  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.12),
-                0 4px 8px rgba(59, 130, 246, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     border-color: var(--vp-c-brand-1);
-
-    html[theme].dark & {
-      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.1),
-                  0 4px 8px rgba(245, 158, 11, 0.06);
-    }
-
-    &::before {
-      right: -20%;
-      top: -20%;
-    }
-  }
-}
-
-.VPFeature .icon {
-  margin-right: 16px;
-  color: var(--vp-c-brand-1);
-}
-
-.VPFeature .title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--vp-c-text-1);
-}
-
-.VPFeature .details {
-  font-size: 0.95rem;
-  color: var(--vp-c-text-2);
-  line-height: 1.6;
-}
-
-// ============ 入场动画 ============
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 

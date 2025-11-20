@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "沃以的小站"
   text: "如果人生只剩22分钟，不如烤个棉花糖吧"
-  tagline: 分享技术、生活与思考
+  tagline: 保持好奇，赤忱如初
   image:
     src: /avatar.png
     alt: Avatar
@@ -27,5 +27,3 @@ features:
     details: 记录生活中的趣事、感悟以及那些值得纪念的瞬间。
     link: /life/
 ---
-
-<HomeHeroEnhance />
