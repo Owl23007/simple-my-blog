@@ -1,0 +1,292 @@
+/* ============ 变量定义 ============ */
+/* 现代轻快主题色配置 */
+
+/* 浅色模式使用的变量 */
+html[theme] {
+  /* 主色调 - 清新蓝色系 */
+  --vp-c-user-1: #3b82f6;        /* 主蓝色 */
+  --vp-c-user-2: #1d4ed8;        /* 深蓝色 */
+  --vp-c-user-3: #60a5fa;        /* 浅蓝色 */
+  --vp-c-user-soft: rgba(59, 130, 246, 0.1);  /* 柔和蓝色背景 */
+
+  /* 边框颜色 */
+  --vp-c-border: #e5e7eb;         /* 浅灰边框 */
+  --vp-c-divider: #f3f4f6;        /* 分割线颜色 */
+
+  /* 滚动条颜色 */
+  --vp-scrollbar-track: #f8fafc;   /* 滚动条轨道 */
+  --vp-scrollbar-thumb: #cbd5e1;   /* 滚动条滑块 */
+  --vp-scrollbar-thumb-hover: #94a3b8; /* 滚动条滑块悬停 */
+}
+
+/* 深色模式使用的变量 */
+html[theme].dark {
+  /* 主色调 - 温暖橙色系 */
+  --vp-c-user-1: #f59e0b;        /* 主橙色 */
+  --vp-c-user-2: #d97706;        /* 深橙色 */
+  --vp-c-user-3: #fbbf24;        /* 浅橙色 */
+  --vp-c-user-soft: rgba(245, 158, 11, 0.15);  /* 柔和橙色背景 */
+
+  /* 边框颜色 */
+  --vp-c-border: #374151;         /* 深灰边框 */
+  --vp-c-divider: #4b5563;        /* 分割线颜色 */
+
+  /* 滚动条颜色 */
+  --vp-scrollbar-track: #1f2937;   /* 滚动条轨道 */
+  --vp-scrollbar-thumb: #6b7280;   /* 滚动条滑块 */
+  --vp-scrollbar-thumb-hover: #9ca3af; /* 滚动条滑块悬停 */
+}
+
+/* 覆盖默认变量 */
+html[theme],html[theme].dark {
+  --vp-c-brand-1: var(--vp-c-user-1);
+  --vp-c-brand-2: var(--vp-c-user-2);
+  --vp-c-brand-3: var(--vp-c-user-3);
+  --vp-c-brand-soft: var(--vp-c-user-soft);
+}
+
+// ============ 全局滚动条配置 ============
+// 避免滚动条显示/隐藏时页面抖动
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+// Webkit 浏览器滚动条样式（Chrome, Safari, Edge）
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-scrollbar-thumb);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--vp-scrollbar-thumb-hover);
+  }
+}
+
+// 隐藏滚动条箭头
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+// Firefox 滚动条样式
+* {
+  scrollbar-color: var(--vp-scrollbar-thumb) var(--vp-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+// ============ VPHome 样式 ============
+
+.VPHome {
+  // 定义遮罩样式
+  background: radial-gradient(ellipse,
+    rgba(var(--bg-gradient-home), 1) 0%,
+    rgba(var(--bg-gradient-home), 0) 150%);
+
+  // 自定义首页背景图
+  &::before {
+    background-image: url(./assets/bg.webp);
+    background-size: cover;
+    background-position: center 100%;
+    background-repeat: no-repeat;
+  }
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+
+  // 可选：如果希望在深色模式下也保持一致的视觉效果，可以单独定义
+  html[theme].dark & {
+    background: radial-gradient(
+      ellipse,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+}
+
+// ============ 文章卡片样式定制 ============
+
+// 修改文章卡片整体样式
+.blog-item {
+  // 圆角
+  border-radius: 12px;
+
+  // 阴影效果
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  // 边框
+  border: 1px solid var(--vp-c-divider);
+
+  // 过渡动画
+  transition: all 0.3s ease;
+
+  // 背景色 (使用半透明白色，与背景图融合)
+  background: rgba(255, 255, 255, 0.85);
+
+  // 鼠标悬停效果
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--vp-c-brand-1);
+  }
+
+  // 修改文章标题样式
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--vp-c-text-1);
+
+    &:hover {
+      color: var(--vp-c-brand-1);
+    }
+  }
+
+  // 修改文章描述/摘要样式
+  .description {
+    color: var(--vp-c-text-2);
+    line-height: 1.6;
+  }
+
+  // 修改标签样式
+  .tag {
+    background: var(--vp-c-brand-soft);
+    color: var(--vp-c-brand-1);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.85rem;
+
+    &:hover {
+      background: var(--vp-c-brand-1);
+      color: #fff;
+    }
+  }
+
+  // 修改置顶图标样式
+  .pin.pin::before {
+    // 修改颜色为红色
+    background-image: linear-gradient(#6bd3ff, #0dbf4e);
+  }
+
+  // 修改文章封面图样式
+  .cover {
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // 修改日期和阅读时间样式
+  .meta {
+    color: var(--vp-c-text-3);
+    font-size: 0.9rem;
+  }
+}
+
+// ============ 文章详情页样式 ============
+
+// 确保文章详情页的元信息显示
+.blog-article-meta,
+.blog-article-info,
+.article-metadata {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+// 文章标题下的元信息样式
+.VPDoc .container .content-container .content .vp-doc h1 + p,
+.VPDoc .content .vp-doc h1 + div {
+  color: var(--vp-c-text-2);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+// ============ 主页组件样式优化 ============
+
+/* 主页 Hero 图片样式优化 */
+.VPHomeHero .image-src {
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05) rotate(5deg);
+  }
+}
+
+/* 主页 Feature 卡片样式优化 */
+.VPFeature {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--vp-c-brand-1);
+  }
+}
+
+.VPNavBarTitle .logo {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+// ============ Pagefind 搜索样式 ============
+
+/* 搜索输入框 */
+.pagefind-ui {
+  --pagefind-ui-primary: var(--vp-c-brand);
+  --pagefind-ui-border: var(--vp-c-divider);
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-text: var(--vp-c-text-1);
+  --pagefind-ui-background: var(--vp-c-bg-soft);
+  --pagefind-ui-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索按钮 */
+.pagefind-ui__input {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* 搜索结果 */
+.pagefind-ui__results {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* 搜索结果项 */
+.pagefind-ui__result {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+
+/* 搜索结果高亮 */
+.pagefind-ui__result-title {
+  font-weight: 600;
+  color: var(--vp-c-brand);
+}
+
+.pagefind-ui__result-excerpt {
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}

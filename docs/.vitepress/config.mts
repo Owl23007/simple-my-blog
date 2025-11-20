@@ -72,6 +72,14 @@ export default defineConfig({
         icon: 'github',
         link: 'https://github.com/Owl23007/simple-my-blog'
       }
-    ]
+    ],
+    footer: {
+      message: '基于 MIT 许可发布',
+      copyright: 'Copyright © 2024-present 沃以'
+    },
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    }
   }
 })

@@ -1,22 +1,19 @@
-import BlogTheme from '@sugarat/theme'
 import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import Layout from './Layout.vue'
 
-// 导入自定义组件
 import FolderTimeline from './components/FolderTimeline.vue'
+import SeriesList from './components/SeriesList.vue'
 import Timeline from './components/Timeline.vue'
 
-// 自定义样式重载
-import './style.scss'
+import './style.less'
 
-// 自定义主题色
-import './user-theme.css'
-
-// 扩展主题
 export default {
-  extends: BlogTheme,
+  Layout,
+  extends: DefaultTheme,
   enhanceApp({ app }) {
-    // 注册全局组件
     app.component('Timeline', Timeline)
     app.component('FolderTimeline', FolderTimeline)
+    app.component('SeriesList', SeriesList)
   }
 } satisfies Theme
