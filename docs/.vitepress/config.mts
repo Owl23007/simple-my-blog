@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
 import taskLists from 'markdown-it-task-lists'
+import { defineConfig } from 'vitepress'
 
 // 使用独立用户主页仓库 (github.io)
 const base = '/'
@@ -110,6 +110,24 @@ export default defineConfig({
     docFooter: {
       prev: '上一篇',
       next: '下一篇'
+    },
+    sidebar: {
+      '/series/软件设计体系结构/': [
+        { text: '查看本文大纲', link: '/series/软件设计体系结构/index' },
+        {
+          text: '目录',
+          items: [
+            { text: '第一章 软件设计基础', link: '/series/软件设计体系结构/01-软件设计基础' },
+            { text: '第二章 软件设计原则', link: '/series/软件设计体系结构/02-软件设计原则' }
+            ,
+            { text: '第三章 UML 基础与建模实践', link: '/series/软件设计体系结构/03-UML基础与建模实践' }
+            ,
+            { text: '第四章 创建型设计模式', link: '/series/软件设计体系结构/04-创建型设计模式' },
+            { text: '第五章 结构型设计模式', link: '/series/软件设计体系结构/05-结构型设计模式' },
+            { text: '第六章 行为型设计模式', link: '/series/软件设计体系结构/06-行为型设计模式' }
+          ]
+        }
+      ]
     }
   }
 })
