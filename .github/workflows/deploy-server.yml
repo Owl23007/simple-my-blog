@@ -1,103 +1,66 @@
 name: Deploy to Server
 
-# 触发条件，push到master分支
 on:
   push:
     branches: [master]
   workflow_dispatch:
 
-# 设置时区
 env:
   TZ: Asia/Shanghai
 
-# 权限设置
 permissions:
   contents: read
 
 jobs:
-  # 构建任务
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [20]
 
     steps:
-      # 拉取代码
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 设置使用 Node.js 版本
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      # 安装 pnpm
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: latest
           run_install: false
 
-      # 安装依赖
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # 构建项目
       - name: Build blog project
         run: pnpm build
 
-      # 上传构建产物
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: ./docs/.vitepress/dist
 
-  # 部署任务
   deploy:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/master'
 
     steps:
-      # 下载构建产物
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: ./dist
 
-      # 部署到服务器
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
-        with:
-          # 服务器配置（使用 GitHub Secrets 保存敏感信息）
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT || 22 }}
-
-          # 部署脚本
-          script: |
-            # 检查部署目录是否存在，不存在则创建
-            if [ ! -d "${{ secrets.SERVER_DEPLOY_PATH }}" ]; then
-              mkdir -p ${{ secrets.SERVER_DEPLOY_PATH }}
-            fi
-
-            # 备份旧版本（可选）
-            if [ -d "${{ secrets.SERVER_DEPLOY_PATH }}/dist" ]; then
-              mv ${{ secrets.SERVER_DEPLOY_PATH }}/dist ${{ secrets.SERVER_DEPLOY_PATH }}/dist.bak.$(date +%Y%m%d_%H%M%S)
-            fi
-
-            echo "Deployment completed successfully!"
-
-      # 上传文件到服务器
-      - name: Upload files to server
+      # 上传新构建到服务器的临时目录
+      - name: Upload files to server (temporary dir)
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -105,11 +68,11 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           source: "dist/*"
-          target: ${{ secrets.SERVER_DEPLOY_PATH }}
+          target: ${{ secrets.SERVER_DEPLOY_PATH }}/dist_new
           rm: false
 
-      # 执行服务器端命令（如重启服务等）
-      - name: Run server commands
+      # 原子切换 + 清理
+      - name: Atomic switch and cleanup
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -117,10 +80,26 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            # 如果使用 Nginx，重新加载配置
-            # sudo systemctl reload nginx
+            set -e  # 遇错即停
 
-            # 如果有其他清理或重启命令，在此添加
-            # sudo systemctl restart your-service
+            DEPLOY_PATH="${{ secrets.SERVER_DEPLOY_PATH }}"
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
-            echo "Server commands executed successfully!"
+            # 1. 备份当前 live 目录
+            if [ -L "$DEPLOY_PATH/current" ]; then
+              CURRENT_TARGET=$(readlink "$DEPLOY_PATH/current")
+              mv "$CURRENT_TARGET" "$DEPLOY_PATH/dist.bak.$TIMESTAMP" || true
+            elif [ -d "$DEPLOY_PATH/current" ]; then
+              mv "$DEPLOY_PATH/current" "$DEPLOY_PATH/dist.bak.$TIMESTAMP"
+            fi
+
+            # 2. 创建新软链接：current -> dist_new
+            ln -sfn "$DEPLOY_PATH/dist_new" "$DEPLOY_PATH/current"
+
+            # 3. 删除过期备份，保留最近3份
+            ls -1t $DEPLOY_PATH/dist.bak.* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+
+            # 4. 确保权限正确（根据你的服务器用户调整）
+            chown -R $USER:$USER "$DEPLOY_PATH/dist_new" 2>/dev/null || true
+
+            echo "Deployment switched atomically to dist_new"
