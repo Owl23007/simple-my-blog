@@ -47,7 +47,7 @@ jobs:
           name: dist
           path: ./docs/.vitepress/dist
 
-  deploy:
+   deploy:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -59,7 +59,7 @@ jobs:
           name: dist
           path: ./dist
 
-      # 上传新构建到服务器的临时目录
+      # 上传到服务器的临时目录（保持原样）
       - name: Upload files to server (temporary dir)
         uses: appleboy/scp-action@master
         with:
@@ -71,7 +71,7 @@ jobs:
           target: ${{ secrets.SERVER_DEPLOY_PATH }}/dist_new
           rm: false
 
-      # 原子切换 + 清理
+      # 原子切换：先固化目录，再切链接
       - name: Atomic switch and cleanup
         uses: appleboy/ssh-action@master
         with:
@@ -80,26 +80,31 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            set -e  # 遇错即停
-
+            set -e
             DEPLOY_PATH="${{ secrets.SERVER_DEPLOY_PATH }}"
             TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+            NEW_PERSISTENT_DIR="$DEPLOY_PATH/dist.$TIMESTAMP"
 
-            # 1. 备份当前 live 目录
-            if [ -L "$DEPLOY_PATH/current" ]; then
-              CURRENT_TARGET=$(readlink "$DEPLOY_PATH/current")
-              mv "$CURRENT_TARGET" "$DEPLOY_PATH/dist.bak.$TIMESTAMP" || true
-            elif [ -d "$DEPLOY_PATH/current" ]; then
-              mv "$DEPLOY_PATH/current" "$DEPLOY_PATH/dist.bak.$TIMESTAMP"
+            # 1. 确保 dist_new 已上传
+            if [ ! -d "$DEPLOY_PATH/dist_new" ]; then
+              echo "ERROR: dist_new not found on server!" >&2
+              exit 1
             fi
 
-            # 2. 创建新软链接：current -> dist_new
-            ln -sfn "$DEPLOY_PATH/dist_new" "$DEPLOY_PATH/current"
+            # 2. 将临时目录 dist_new 重命名为持久目录（原子操作）
+            mv "$DEPLOY_PATH/dist_new" "$NEW_PERSISTENT_DIR"
 
-            # 3. 删除过期备份，保留最近3份
-            ls -1t $DEPLOY_PATH/dist.bak.* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+            # 3. 备份当前线上版本（如果 current 有效）
+            if [ -L "$DEPLOY_PATH/current" ] && [ -e "$DEPLOY_PATH/current" ]; then
+              CURRENT_TARGET=$(readlink "$DEPLOY_PATH/current")
+              # 可选：保留为备份（但通常不需要，因为我们有历史构建）
+              # mv "$DEPLOY_PATH/$CURRENT_TARGET" "$DEPLOY_PATH/dist.bak.$TIMESTAMP" 2>/dev/null || true
+            fi
 
-            # 4. 确保权限正确（根据你的服务器用户调整）
-            chown -R $USER:$USER "$DEPLOY_PATH/dist_new" 2>/dev/null || true
+            # 4. 原子切换 current 链接到新持久目录
+            ln -sfn "$NEW_PERSISTENT_DIR" "$DEPLOY_PATH/current"
 
-            echo "Deployment switched atomically to dist_new"
+            # 5. 清理旧版本：保留最近3个 dist.*（包括 dist.bak.* 和 dist.时间戳）
+            (ls -1td "$DEPLOY_PATH"/dist.* 2>/dev/null || true) | tail -n +4 | xargs -r rm -rf
+
+            echo "Deployed atomically to $NEW_PERSISTENT_DIR"
