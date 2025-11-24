@@ -47,7 +47,7 @@ jobs:
           name: dist
           path: ./docs/.vitepress/dist
 
-   deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -87,7 +87,7 @@ jobs:
 
             # 1. 确保 dist_new 已上传
             if [ ! -d "$DEPLOY_PATH/dist_new" ]; then
-              echo "ERROR: dist_new not found on server!" >&2
+              echo "❌ ERROR: dist_new not found on server!" >&2
               exit 1
             fi
 
@@ -107,4 +107,7 @@ jobs:
             # 5. 清理旧版本：保留最近3个 dist.*（包括 dist.bak.* 和 dist.时间戳）
             (ls -1td "$DEPLOY_PATH"/dist.* 2>/dev/null || true) | tail -n +4 | xargs -r rm -rf
 
-            echo "Deployed atomically to $NEW_PERSISTENT_DIR"
+            # 6. 修复权限（可选）
+            chown -R $USER:$USER "$NEW_PERSISTENT_DIR" 2>/dev/null || true
+
+            echo "✅ Deployed atomically to $NEW_PERSISTENT_DIR"
