@@ -15,8 +15,16 @@ const mermaidPlugin = (md: any) => {
 
     if (info === 'mermaid') {
       const code = token.content.trim()
+      // 转义 HTML 特殊字符，防止 Vue 编译报错（如 <<include>> 被识别为未闭合标签）
+      const escapedCode = code
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+
       // 使用 pre.mermaid 标签，mermaid 库会识别并处理
-      return `<pre class="mermaid mermaid-${mermaidId++}">${code}</pre>\n`
+      return `<pre class="mermaid mermaid-${mermaidId++}">${escapedCode}</pre>\n`
     }
 
     return defaultFenceRenderer(tokens, idx, options, env, self)

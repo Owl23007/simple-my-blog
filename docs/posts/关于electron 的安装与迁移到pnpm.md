@@ -131,7 +131,7 @@ Write-Host "成功! 现在运行: pnpm start" -ForegroundColor Green
 搞定完这些，别忘了运行一下 `pnpm electron-rebuild`，把那些原生模块（比如 `better-sqlite3` 之类的）重新编译一下，确保它们能跟你的 Electron 版本对上号。
 
 ::: tip
-如果在这里 `pnpm electron-rebuild` 报错，检查一下` electron-rebuild` 的依赖版本是不是太低了。可以尝试升级 `electron-rebuild`：
+如果在这里 `pnpm electron-rebuild` 报错，检查一下`electron-rebuild` 的依赖版本是不是太低了。可以尝试升级 `electron-rebuild`：
 
 ```bash
 pnpm add electron-rebuild@latest --save-dev
