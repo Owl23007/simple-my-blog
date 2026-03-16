@@ -42,6 +42,7 @@ export default defineConfig({
   title: '沃以的小站',
   description: '如果人生只剩22分钟，不如烤个棉花糖吧',
   lastUpdated: true,
+  ignoreDeadLinks: true,
   markdown: {
     config(md) {
       md.use(taskLists)
