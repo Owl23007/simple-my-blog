@@ -29,7 +29,11 @@ const isHomePage = computed(() => {
 // ============ Dark Mode ============
 function updateDarkMode() {
   const html = document.documentElement
-  isDark.value ? html.classList.add('dark') : html.classList.remove('dark')
+  if (isDark.value) {
+    html.classList.add('dark')
+  } else {
+    html.classList.remove('dark')
+  }
 }
 
 onMounted(() => updateDarkMode())
