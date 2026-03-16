@@ -1,4 +1,5 @@
 import taskLists from 'markdown-it-task-lists'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 import { autoGenerateSidebars } from './theme/utils/sidebar.mts'
 
@@ -51,14 +52,9 @@ export default defineConfig({
     ['link', { rel: 'icon', href: `${base}favicon.ico` }]
   ],
   vite: {
-    css: {
-      preprocessorOptions: {
-        less: {
-          api: 'modern-compiler',
-          silenceDeprecations: ['legacy-js-api']
-        }
-      }
-    }
+    plugins: [
+      UnoCSS(),
+    ],
   },
   themeConfig: {
     // 搜索配置
