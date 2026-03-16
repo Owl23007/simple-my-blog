@@ -115,13 +115,13 @@ const formatDate = (date: string | Date) => {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .article-card {
   display: block;
   height: 100%;
   padding: 1.5rem;
   border-radius: 1rem;
-  border: 1px solid #f3f4f6; // gray-100
+  border: 1px solid #f3f4f6; /* gray-100 */
   background-color: #fff;
   transition: all 0.3s;
   position: relative;
@@ -130,17 +130,17 @@ const formatDate = (date: string | Date) => {
   color: inherit;
 
   .dark & {
-    border-color: #1f2937; // gray-800
-    background-color: rgba(31, 41, 55, 0.5); // gray-800/50
+    border-color: #1f2937; /* gray-800 */
+    background-color: rgba(31, 41, 55, 0.5); /* gray-800/50 */
   }
 
   &:hover {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #bfdbfe; // blue-200
+    border-color: #bfdbfe; /* blue-200 */
     transform: translateY(-0.25rem);
 
     .dark & {
-      border-color: #1e40af; // blue-800
+      border-color: #1e40af; /* blue-800 */
     }
   }
 
@@ -192,9 +192,9 @@ const formatDate = (date: string | Date) => {
 }
 
 .card-title {
-  font-size: 1.25rem; // text-xl
+  font-size: 1.25rem; /* text-xl */
   font-weight: 700;
-  color: #111827; // gray-900
+  color: #111827; /* gray-900 */
   transition: color 0.3s;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -206,10 +206,10 @@ const formatDate = (date: string | Date) => {
   }
 
   .group:hover & {
-    color: #2563eb; // blue-600
+    color: #2563eb; /* blue-600 */
 
     .dark & {
-      color: #60a5fa; // blue-400
+      color: #60a5fa; /* blue-400 */
     }
   }
 }
@@ -217,12 +217,12 @@ const formatDate = (date: string | Date) => {
 .card-date {
   display: flex;
   align-items: center;
-  font-size: 0.875rem; // text-sm
-  color: #6b7280; // gray-500
+  font-size: 0.875rem; /* text-sm */
+  color: #6b7280; /* gray-500 */
   transition: color 0.3s;
 
   .dark & {
-    color: #9ca3af; // gray-400
+    color: #9ca3af; /* gray-400 */
   }
 
   .icon {
@@ -233,8 +233,8 @@ const formatDate = (date: string | Date) => {
 }
 
 .card-desc {
-  font-size: 0.875rem; // text-sm
-  color: #4b5563; // gray-600
+  font-size: 0.875rem; /* text-sm */
+  color: #4b5563; /* gray-600 */
   line-height: 1.625;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -244,7 +244,7 @@ const formatDate = (date: string | Date) => {
   transition: color 0.3s;
 
   .dark & {
-    color: #d1d5db; // gray-300
+    color: #d1d5db; /* gray-300 */
   }
 }
 
@@ -254,11 +254,11 @@ const formatDate = (date: string | Date) => {
   justify-content: space-between;
   padding-top: 1rem;
   margin-top: auto;
-  border-top: 1px solid #f3f4f6; // gray-100
+  border-top: 1px solid #f3f4f6; /* gray-100 */
   transition: border-color 0.3s;
 
   .dark & {
-    border-color: rgba(55, 65, 81, 0.5); // gray-700/50
+    border-color: rgba(55, 65, 81, 0.5); /* gray-700/50 */
   }
 }
 
@@ -272,32 +272,32 @@ const formatDate = (date: string | Date) => {
   display: inline-flex;
   align-items: center;
   padding: 0.125rem 0.625rem;
-  font-size: 0.75rem; // text-xs
+  font-size: 0.75rem; /* text-xs */
   font-weight: 500;
-  background-color: #f3f4f6; // gray-100
-  color: #4b5563; // gray-600
+  background-color: #f3f4f6; /* gray-100 */
+  color: #4b5563; /* gray-600 */
   border-radius: 0.375rem;
   transition: all 0.3s;
 
   .dark & {
-    background-color: rgba(55, 65, 81, 0.5); // gray-700/50
-    color: #d1d5db; // gray-300
+    background-color: rgba(55, 65, 81, 0.5); /* gray-700/50 */
+    color: #d1d5db; /* gray-300 */
   }
 
   .group:hover & {
-    background-color: #eff6ff; // blue-50
-    color: #2563eb; // blue-600
+    background-color: #eff6ff; /* blue-50 */
+    color: #2563eb; /* blue-600 */
 
     .dark & {
-      background-color: rgba(30, 58, 138, 0.3); // blue-900/30
-      color: #93c5fd; // blue-300
+      background-color: rgba(30, 58, 138, 0.3); /* blue-900/30 */
+      color: #93c5fd; /* blue-300 */
     }
   }
 }
 
 .tag-more {
-  font-size: 0.75rem; // text-xs
-  color: #9ca3af; // gray-400
+  font-size: 0.75rem; /* text-xs */
+  color: #9ca3af; /* gray-400 */
   align-self: center;
 }
 
@@ -308,16 +308,16 @@ const formatDate = (date: string | Date) => {
   width: 2rem;
   height: 2rem;
   border-radius: 9999px;
-  background-color: #f9fafb; // gray-50
-  color: #9ca3af; // gray-400
+  background-color: #f9fafb; /* gray-50 */
+  color: #9ca3af; /* gray-400 */
   transition: all 0.3s;
 
   .dark & {
-    background-color: rgba(55, 65, 81, 0.5); // gray-700/50
+    background-color: rgba(55, 65, 81, 0.5); /* gray-700/50 */
   }
 
   .group:hover & {
-    background-color: #2563eb; // blue-600
+    background-color: #2563eb; /* blue-600 */
     color: #fff;
     transform: translateX(0.25rem);
   }

@@ -170,7 +170,7 @@ const runDays = computed(() => {
 })
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .home-wrapper {
   width: 100%;
 }
@@ -190,7 +190,7 @@ const runDays = computed(() => {
   padding-top: calc(var(--vp-nav-height) + 1rem);
 
   .dark & {
-    background-color: #030712; // gray-950
+    background-color: #030712; /* gray-950 */
   }
 }
 
@@ -235,7 +235,7 @@ const runDays = computed(() => {
     left: -10%;
     width: 50%;
     height: 50%;
-    background-color: rgba(96, 165, 250, 0.2); // blue-400
+    background-color: rgba(96, 165, 250, 0.2); /* blue-400 */
   }
 
   .shape-2 {
@@ -243,7 +243,7 @@ const runDays = computed(() => {
     right: -10%;
     width: 40%;
     height: 40%;
-    background-color: rgba(192, 132, 252, 0.2); // purple-400
+    background-color: rgba(192, 132, 252, 0.2); /* purple-400 */
     animation-delay: 700ms;
   }
 
@@ -252,14 +252,14 @@ const runDays = computed(() => {
     left: 20%;
     width: 30%;
     height: 30%;
-    background-color: rgba(45, 212, 191, 0.2); // teal-400
+    background-color: rgba(45, 212, 191, 0.2); /* teal-400 */
     animation-delay: 1000ms;
   }
 }
 
 .hero-content {
   position: relative;
-  max-width: 64rem; // max-w-5xl
+  max-width: 64rem; /* max-w-5xl */
   width: 100%;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -289,10 +289,10 @@ const runDays = computed(() => {
 }
 
 .title {
-  font-size: 1.6rem !important; // text-3xl
+  font-size: 1.6rem !important; /* text-3xl */
   font-weight: 800;
   letter-spacing: -0.025em;
-  color: #111827; // gray-900
+  color: #111827; /* gray-900 */
   margin-bottom: 1.5rem;
   line-height: 1.3 !important;
   transition: color 0.5s;
@@ -304,14 +304,14 @@ const runDays = computed(() => {
   }
 
   @media (min-width: 768px) {
-    font-size: 1.785rem !important; // text-5xl
+    font-size: 1.785rem !important; /* text-5xl */
     line-height: 1.15 !important;
   }
 }
 
 .description {
-  font-size: 1.125rem; // text-lg
-  color: #4b5563; // gray-600
+  font-size: 1.125rem; /* text-lg */
+  color: #4b5563; /* gray-600 */
   margin-bottom: 1.5rem;
   line-height: 1.625;
   max-width: 42rem;
@@ -322,7 +322,7 @@ const runDays = computed(() => {
   animation-delay: 200ms;
 
   .dark & {
-    color: #d1d5db; // gray-300
+    color: #d1d5db; /* gray-300 */
   }
 
   @media (min-width: 768px) {
@@ -492,16 +492,16 @@ const runDays = computed(() => {
 .featured-section {
   padding-top: 2rem;
   padding-bottom: 6rem;
-  background-color: #f9fafb; // gray-50
+  background-color: #f9fafb; /* gray-50 */
   transition: background-color 0.5s;
 
   .dark & {
-    background-color: rgba(3, 7, 18, 0.8); // gray-950/80
+    background-color: rgba(3, 7, 18, 0.8); /* gray-950/80 */
   }
 }
 
 .container {
-  max-width: 81rem; // max-w-6xl
+  max-width: 81rem; /* max-w-6xl */
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -516,7 +516,7 @@ const runDays = computed(() => {
 }
 
 .section-title {
-  font-size: 1.875rem !important; // text-3xl
+  font-size: 1.875rem !important; /* text-3xl */
   font-weight: 700;
   color: #111827;
   margin-bottom: 1rem;
@@ -527,7 +527,7 @@ const runDays = computed(() => {
   }
 
   @media (min-width: 768px) {
-    font-size: 2.25rem; // text-4xl
+    font-size: 2.25rem; /* text-4xl */
   }
 }
 
@@ -715,7 +715,7 @@ const runDays = computed(() => {
   transition: background-color 0.5s;
 
   .dark & {
-    background-color: #0f172a; // slate-900
+    background-color: #0f172a; /* slate-900 */
   }
 }
 

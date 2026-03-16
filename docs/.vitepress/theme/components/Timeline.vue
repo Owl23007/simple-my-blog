@@ -98,7 +98,7 @@ const formatDate = (date: string | Date) => {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .timeline-wrapper {
   width: 100%;
   padding: 20px 0;

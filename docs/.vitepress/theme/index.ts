@@ -9,7 +9,7 @@ import PostsList from './components/PostsList.vue'
 import SeriesList from './components/SeriesList.vue'
 import Timeline from './components/Timeline.vue'
 
-import './style.less'
+import './style.css'
 
 // ============ Mermaid Initialization ============
 if (typeof window !== 'undefined') {

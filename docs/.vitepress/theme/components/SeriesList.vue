@@ -64,7 +64,7 @@ const getSeriesTitle = (title: string) => {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .series-grid {
   display: grid;
   grid-template-columns: 1fr;

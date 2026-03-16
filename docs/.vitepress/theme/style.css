@@ -45,15 +45,15 @@
 
 
 
-// ============ VPHome 样式 ============
+/* ============ VPHome 样式 ============ */
 
 .VPHome {
-  // 定义遮罩样式
+  /* 定义遮罩样式 */
   background: radial-gradient(ellipse,
     rgba(var(--bg-gradient-home), 1) 0%,
     rgba(var(--bg-gradient-home), 0) 150%);
 
-  // 自定义首页背景图
+  /* 自定义首页背景图 */
   &::before {
     background-image: url(./assets/bg.webp);
     background-size: cover;
@@ -67,7 +67,7 @@
     rgba(255, 255, 255, 0.3) 100%
   );
 
-  // 可选：如果希望在深色模式下也保持一致的视觉效果，可以单独定义
+  /* 可选：如果希望在深色模式下也保持一致的视觉效果，可以单独定义 */
   html[theme].dark & {
     background: radial-gradient(
       ellipse,
@@ -77,7 +77,7 @@
   }
 }
 
-// ============ 主页组件样式优化 ============
+/* ============ 主页组件样式优化 ============ */
 
 /* 主页 Hero 背景样式 */
 .VPHomeHero {
@@ -140,7 +140,7 @@
   overflow: hidden;
 }
 
-// ============ Pagefind 搜索样式 ============
+/* ============ Pagefind 搜索样式 ============ */
 
 /* 搜索输入框 */
 .pagefind-ui {
@@ -182,7 +182,7 @@
   font-size: 0.9rem;
 }
 
-// ============ 自定义滚动条样式 ============
+/* ============ 自定义滚动条样式 ============ */
 
 /* 防止滚动条抖动 */
 html {
@@ -192,7 +192,7 @@ html {
 
 /* 全局滚动条 */
 ::-webkit-scrollbar {
-  width: 4px;  // 建议调整为正常宽度
+  width: 4px;  /* 建议调整为正常宽度 */
   height: 8px;
 }
 
@@ -211,7 +211,7 @@ html {
 }
 
 
-// HTML 悬停时显示滑块
+/* HTML 悬停时显示滑块 */
 html {
 
   &:hover {
