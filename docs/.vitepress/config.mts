@@ -1,6 +1,7 @@
 import taskLists from 'markdown-it-task-lists'
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { autoGenerateSidebars } from './theme/utils/sidebar.mts'
 
 // 使用独立用户主页仓库 (github.io)
@@ -45,6 +46,7 @@ export default defineConfig({
     config(md) {
       md.use(taskLists)
       md.use(mermaidPlugin)
+      md.use(groupIconMdPlugin)
     },
   },
   head: [
@@ -54,6 +56,7 @@ export default defineConfig({
   vite: {
     plugins: [
       UnoCSS(),
+      groupIconVitePlugin(),
     ],
   },
   themeConfig: {
