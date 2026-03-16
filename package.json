@@ -10,10 +10,12 @@
     "build": "vitepress build docs && pagefind --source docs/.vitepress/dist",
     "serve": "vitepress serve docs",
     "type-check": "tsc --noEmit --skipLibCheck",
-    "lint": "oxlint docs/.vitepress --tsconfig ./tsconfig.json",
-    "lint:fix": "oxlint docs/.vitepress --tsconfig ./tsconfig.json --fix",
+    "lint": "vp lint docs/.vitepress",
+    "lint:fix": "vp lint docs/.vitepress --fix",
+    "fmt": "vp fmt docs/.vitepress",
+    "fmt:fix": "vp fmt docs/.vitepress --fix",
     "lint:md": "markdownlint docs/**/*.md --ignore docs/.vitepress",
-    "check": "pnpm type-check && pnpm lint"
+    "check": "vp check"
   },
   "dependencies": {
     "markdown-it-task-lists": "^2.1.1",
@@ -25,16 +27,13 @@
   },
   "devDependencies": {
     "@types/node": "^24.9.2",
+    "@voidzero-dev/vite-plus-core": "^0.1.11",
     "less": "^4.2.0",
-    "lint-staged": "^16.2.4",
     "markdownlint-cli": "^0.45.0",
-    "oxlint": "^1.25.0",
     "pagefind": "^1.3.0",
     "typescript": "^5.4.5",
+    "vite-plus": "^0.1.11",
     "vitepress": "1.6.4"
-  },
-  "lint-staged": {
-    "*.{js,ts,vue,md}": []
   },
   "pnpm": {
     "peerDependencyRules": {
