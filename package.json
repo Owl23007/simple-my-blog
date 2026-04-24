@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs && pagefind --source docs/.vitepress/dist",
+    "build": "vitepress build docs && pagefind --site docs/.vitepress/dist",
     "serve": "vitepress serve docs",
     "type-check": "tsc --noEmit --skipLibCheck",
     "lint": "vp lint docs/.vitepress",

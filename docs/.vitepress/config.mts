@@ -55,6 +55,10 @@ export default defineConfig({
     ['link', { rel: 'icon', href: `${base}favicon.ico` }]
   ],
   vite: {
+    build: {
+      // Avoid CSS nesting transform warnings that require :is() fallback for legacy targets
+      cssTarget: 'safari15'
+    },
     plugins: [
       UnoCSS(),
       groupIconVitePlugin(),
@@ -92,6 +96,7 @@ export default defineConfig({
         ]
       },
       { text: '建站日记', link: '/building/' },
+      { text: '组件文档', link: '/pages/components' },
       { text: '关于我', link: '/pages/about' }
     ],
     socialLinks: [

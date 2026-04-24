@@ -25,7 +25,8 @@ next: ./01-html.md
 - PWA 集成：Manifest 与 Service Worker
 - HTML 解析算法与容错机制
 
-#### [2. CSS 的知识体系：布局革命与性能优化]
+#### [2. CSS 的知识体系：布局革命与性能优化](./02-css.md)
+
 - 盒模型本质：标准 vs 怪异模式
 - BFC 触发条件与实际应用场景
 - Flex/Grid 双引擎布局策略
@@ -63,7 +64,7 @@ next: ./01-html.md
 
 ### **第三部分：现代框架**
 
-#### [6. React 深度实践]
+#### [6. React 深度实践](./06-React.md)
 
 - Fiber 架构与调度原理
 - Hooks 设计哲学与闭包陷阱

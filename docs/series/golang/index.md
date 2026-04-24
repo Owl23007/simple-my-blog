@@ -60,7 +60,7 @@ next: false
 - [ ] `net/http` 与 HTTP 服务开发
 - [ ] JSON API、参数校验与中间件设计
 - [ ] 数据库访问：`database/sql`、连接池、事务
-- [ ] Web 框架选型与实践：Gin / Echo / Fiber
+- [ ] Web 框架选型与实践：Gin
 
 ### 第五阶段：测试、调试与性能优化
 
