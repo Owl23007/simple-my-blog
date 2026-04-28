@@ -3,6 +3,7 @@ title: CICD配置
 date: 2025-11-04
 description: 本站使用的CI/CD配置
 ---
+
 # CI/CD 配置
 
 > 基于 GitHub Actions 的自动化 CI/CD 流水线配置与使用指南
@@ -11,13 +12,13 @@ description: 本站使用的CI/CD配置
 
 ### 技术栈
 
-| 组件 | 技术选型 | 版本 |
-|------|---------|------|
-| CI/CD 平台 | GitHub Actions | Latest |
-| 构建工具 | pnpm | 8.x |
-| 运行时 | Node.js | 18.x / 20.x |
-| 部署目标 | GitHub Pages | - |
-| 代码检查 | TypeScript + Oxlint | Latest |
+| 组件       | 技术选型            | 版本        |
+| ---------- | ------------------- | ----------- |
+| CI/CD 平台 | GitHub Actions      | Latest      |
+| 构建工具   | pnpm                | 8.x         |
+| 运行时     | Node.js             | 18.x / 20.x |
+| 部署目标   | GitHub Pages        | -           |
+| 代码检查   | TypeScript + Oxlint | Latest      |
 
 ### 架构流程
 
@@ -50,12 +51,12 @@ graph TD
 
 本项目包含 4 个 GitHub Actions 工作流文件,位于 `.github/workflows/` 目录:
 
-| 工作流文件 | 触发时机 | 主要功能 |
-|-----------|---------|---------|
-| `deploy.yml` | master 分支推送 | 部署到 GitHub Pages |
-| `ci.yml` | 开发分支推送/PR | 代码质量检查 |
-| `release.yml` | 版本标签推送 | 自动发布版本 |
-| `sync-branches.yml` | master 分支推送 | 同步到 develop/doc |
+| 工作流文件          | 触发时机        | 主要功能            |
+| ------------------- | --------------- | ------------------- |
+| `deploy.yml`        | master 分支推送 | 部署到 GitHub Pages |
+| `ci.yml`            | 开发分支推送/PR | 代码质量检查        |
+| `release.yml`       | 版本标签推送    | 自动发布版本        |
+| `sync-branches.yml` | master 分支推送 | 同步到 develop/doc  |
 
 ### 🚀 部署工作流 (deploy.yml)
 
@@ -128,15 +129,15 @@ release/* (发布准备)   版本发布准备
 
 ### 分支权限矩阵
 
-| 分支类型 | CI 检查 | 自动部署 | 版本发布 | 自动同步 |
-|---------|--------|---------|----------|---------|
-| `master` | ✅ | ✅ | - | → develop, doc |
-| `develop` | ✅ | - | - | ← master |
-| `doc` | - | - | - | ← master |
-| `feature/*` | ✅ | - | - | - |
-| `hotfix/*` | ✅ | - | - | - |
-| `release/*` | ✅ | - | - | - |
-| `v*` (标签) | - | - | ✅ | - |
+| 分支类型    | CI 检查 | 自动部署 | 版本发布 | 自动同步       |
+| ----------- | ------- | -------- | -------- | -------------- |
+| `master`    | ✅      | ✅       | -        | → develop, doc |
+| `develop`   | ✅      | -        | -        | ← master       |
+| `doc`       | -       | -        | -        | ← master       |
+| `feature/*` | ✅      | -        | -        | -              |
+| `hotfix/*`  | ✅      | -        | -        | -              |
+| `release/*` | ✅      | -        | -        | -              |
+| `v*` (标签) | -       | -        | ✅       | -              |
 
 ## ⚙️ 环境配置
 

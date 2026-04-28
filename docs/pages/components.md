@@ -82,21 +82,21 @@ description: 当前站点自定义组件与扩展语法的展示和使用说明
 <script setup lang="ts">
 const demoItems = [
   {
-    title: '站点初始化',
-    date: '2026-04-20',
-    description: '完成 VitePress 基础配置',
-    link: '/building/',
-    tags: ['vitepress', 'init'],
-    color: 'var(--vp-c-brand)',
-    category: '里程碑'
+    title: "站点初始化",
+    date: "2026-04-20",
+    description: "完成 VitePress 基础配置",
+    link: "/building/",
+    tags: ["vitepress", "init"],
+    color: "var(--vp-c-brand)",
+    category: "里程碑",
   },
   {
-    title: '新增组件文档',
-    date: '2026-04-24',
-    description: '补充组件使用说明和示例',
-    tags: ['docs']
-  }
-]
+    title: "新增组件文档",
+    date: "2026-04-24",
+    description: "补充组件使用说明和示例",
+    tags: ["docs"],
+  },
+];
 </script>
 
 <Timeline :items="demoItems" />
@@ -155,12 +155,12 @@ const articleDemo = {
 ```vue
 <script setup lang="ts">
 const article = {
-  title: 'VitePress 组件实践',
-  date: '2026-04-24',
-  description: '演示 ArticleCard 的基本展示效果和字段结构。',
-  link: '/pages/components',
-  tags: ['vitepress', 'component', 'demo']
-}
+  title: "VitePress 组件实践",
+  date: "2026-04-24",
+  description: "演示 ArticleCard 的基本展示效果和字段结构。",
+  link: "/pages/components",
+  tags: ["vitepress", "component", "demo"],
+};
 </script>
 
 <ArticleCard :article="article" />

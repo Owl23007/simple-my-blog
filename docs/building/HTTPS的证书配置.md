@@ -49,7 +49,7 @@ sudo certbot --nginx -d example.com -d www.example.com
 ```
 
 ::: tip
- 如果这里你像我一样，同时配置了 domain.com 和 www.domain.com 两个域名，请确保两个域名都已经正确解析到服务器 IP，否则会申请失败。
+如果这里你像我一样，同时配置了 domain.com 和 <www.domain.com> 两个域名，请确保两个域名都已经正确解析到服务器 IP，否则会申请失败。
 :::
 
 过程中会提示：
