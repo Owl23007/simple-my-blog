@@ -1946,7 +1946,6 @@ clearInterval(timer);
 | 函数传参                 | 本质是值传递，对象传进去的是引用的副本               |
 | 垃圾回收                 | 根据可达性判断对象是否可以被清理                  |
 
-
 ## 五、作用域、执行上下文与闭包
 
 ## 六、this 指向与函数调用机制
@@ -1972,3 +1971,451 @@ clearInterval(timer);
 ## 十六、常用内置对象与现代 JavaScript API
 
 ## 十七、手写题与面试高频专题
+
+### 17.1 什么是闭包？
+
+闭包是指：**函数和它能够访问的外部变量环境的组合。**
+
+在 JavaScript 中，函数的作用域在定义时就已经确定。
+当一个内部函数引用了外部函数中的**变量**，并且这个内部函数在外部函数执行结束后**仍然被持有**时，这些被引用的变量不**会随着外部函数执行结束而立即释放**，而是会被保留下来，供内**部函数后续继续访问**。
+
+简单来说，闭包让函数可以“记住”并持续访问它定义时所在作用域中的变量。
+
+```js
+function createCounter() {
+  let count = 0;
+
+  return function () {
+    count++;
+    return count;
+  };
+}
+
+const counter = createCounter();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+```
+
+在这个例子中，`createCounter` 执行结束后，按理说它内部的局部变量 `count` 应该被释放。
+但是返回的内部函数仍然引用着 `count`，所以 `count` 会被保留下来。
+
+因此，每次调用 `counter()` 时，它都能继续访问并修改同一个 `count`。
+
+闭包常见用途包括：
+
+- 数据封装
+- 模拟私有变量
+- 函数工厂
+- 在回调函数中保留状态
+
+需要注意的是，闭包不会保留整个执行上下文，而是保留内部函数仍然需要访问的外部变量。
+如果闭包长期持有大量数据，可能会导致这些数据无法及时被垃圾回收，从而造成内存占用增加。
+
+### 17.2 原型与原型链
+
+在 JavaScript 中，对象本身不一定拥有所有属性。
+当访问一个对象的属性时，如果对象自身没有这个属性，JavaScript 会沿着它的**原型对象**继续查找。
+
+#### 1. 什么是原型？
+
+每个对象都有一个**内部关联对象**，叫做**原型**，即 `__proto__`。
+
+可以简单理解为：
+
+对象自己没有的属性，可以去它的原型上找。
+
+例如：
+
+```js
+const arr = [];
+
+arr.push(1);
+```
+
+`arr`是一个`Array`实例，自己并没有 `push` 方法，但它可以使用 `push`，是因为 `push` 来自 `Array.prototype`。
+
+`Array.prototype`是一个对象，定义了 `push` 方法，所以当访问 `arr.push` 时，JavaScript 会先在 `arr` 上找，找不到就去 `Array.prototype` 上找，找到了就可以调用。
+
+#### 2. 什么是原型链？
+
+如果对象自身没有某个属性，就去它的原型上找。
+如果原型上也没有，就继续去原型的原型上找。
+这个一层一层向上查找的结构，就叫**原型链**。
+
+例如：
+
+```txt
+arr
+ ↓
+Array.prototype
+ ↓
+Object.prototype
+ ↓
+null
+```
+
+当查找到 `null` 时，说明原型链结束。
+
+#### 3. prototype 和 **proto** 的区别
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+const p = new Person("Tom");
+```
+
+关系可以理解为：
+
+`Person.prototype` 是构造函数提供给实例使用的原型对象。
+
+`p.__proto__` 指向 `Person.prototype`。
+
+实例的`__proto__` 指向构造函数的 `prototype`。
+
+也就是：
+
+```js
+p.__proto__ === Person.prototype; // true
+```
+
+更推荐使用标准方法：
+
+```js
+Object.getPrototypeOf(p) === Person.prototype; // true
+```
+
+这也是判断一个对象是否是某个类或者说构造函数的实例的标准方式：
+
+#### 4. constructor 是什么？
+
+默认情况下，原型对象上有一个 `constructor` 属性，指回构造函数本身。
+
+```js
+Person.prototype.constructor === Person; // true
+```
+
+所以关系是：
+
+```txt
+实例对象 p
+  ↓ __proto__
+Person.prototype
+  ↓ constructor
+Person
+```
+
+#### 5. 原型链的作用
+
+原型链主要用于**属性查找和方法复用**。
+
+例如：
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHi = function () {
+  console.log("Hi, " + this.name);
+};
+
+const p1 = new Person("Tom");
+const p2 = new Person("Jerry");
+
+p1.sayHi();
+p2.sayHi();
+```
+
+`sayHi` 不会在每个实例上都创建一份，而是放在 `Person.prototype` 上，由所有实例共享。
+
+#### 6. 总结
+
+原型是对象查找属性时的备用对象。
+当访问一个属性时，如果对象自身没有，JavaScript 会沿着它的原型继续向上查找，这条查找路径就是原型链。
+构造函数的 `prototype` 指向实例共享的原型对象，而实例的 `__proto__` 指向这个原型对象。原型链最终会到达 `Object.prototype`，再往上就是 `null`。
+
+#### 7. 手写实现一个简单的 `instanceof`
+
+`instanceof` 的原理是：判断一个对象的原型链上是否存在某个构造函数的 `prototype`。
+
+```js
+function myInstanceof(obj, Target) {
+  let proto = Object.getPrototypeOf(obj); // 获取 obj 的原型
+  // 也可以写成
+  // let proto = obj.__proto__;
+
+  const prototype = Target.prototype; // 获取 target 的 prototype
+
+  while (proto) {
+    if (proto === prototype) {
+      return true;
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return false;
+}
+```
+
+#### 8. 手写实现一个简单的 `new` 操作符(手动实现继承)
+
+`new` 的核心步骤是：
+
+1. 创建一个新对象
+2. 将新对象的 `__proto__` 指向构造函数的 `prototype`
+3. 执行构造函数，绑定 `this` 到新对象
+4. 返回新对象（如果构造函数没有返回对象）
+
+```js
+function myNew(Constructor, ...args) {
+  // 1. 创建一个新对象，并让它的原型指向 Constructor.prototype
+  const obj = Object.create(Constructor.prototype);
+
+  // 或
+  // const obj = {};
+  // obj.__proto__ = Constructor.prototype;
+
+  // 或
+  // const obj = {};
+  // Object.setPrototypeOf(obj, Constructor.prototype);
+
+  // 2. 执行构造函数，并绑定 this
+  const result = Constructor.apply(obj, args);
+
+  // 3. 如果构造函数返回对象或函数，就返回该结果
+  // 否则返回新创建的 obj
+  const isObject = result !== null && typeof result === "object";
+  const isFunction = typeof result === "function";
+
+  return isObject || isFunction ? result : obj;
+}
+```
+
+### 17.3 防抖、节流与函数柯里化
+
+#### 1. 防抖（Debounce）
+
+防抖的核心思想是：**事件频繁触发时，只在最后一次触发后的指定时间执行函数**。
+
+也就是说，前面的触发都会被取消，只有最后一次生效。
+
+常见场景：
+
+- 搜索框输入联想
+- 窗口大小变化后重新计算布局
+- 表单输入校验
+- 按钮防止重复提交
+
+```js
+// 传入 需要防抖的函数 和延迟时间
+function debounce(fn, delay, ) {
+  let timer = null;
+
+  // args 是函数调用时传入的参数
+  return function (...args) {
+    const context = this;
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(context, args); // 保持 this 和参数
+    }, delay);
+  };
+}
+```
+
+使用示例：
+
+```js
+const input = document.querySelector("input");
+
+input.addEventListener(
+  "input",
+  debounce(function (e) {
+    console.log("发送搜索请求：", e.target.value);
+  }, 500)
+);
+```
+
+如果用户一直输入，函数不会执行。
+只有用户停止输入超过 `500ms` 后，才会真正执行搜索逻辑。
+
+核心点：
+
+```js
+clearTimeout(timer);
+```
+
+每次触发都先清除上一次定时器，重新计时。
+
+#### 2. 节流（Throttle）
+
+节流的核心思想是：**事件频繁触发时，限制函数在固定时间间隔内最多执行一次**。
+
+它不是取消执行，而是降低执行频率。
+
+常见场景：
+
+- 滚动监听
+- 鼠标移动
+- 拖拽
+- 高频点击
+- 页面滚动加载
+
+```js
+function throttle(fn, delay) {
+  let lastTime = 0;
+
+  return function (...args) {
+    const context = this;
+    const now = Date.now();
+
+    if (now - lastTime >= delay) {
+      lastTime = now;
+      fn.apply(context, args);
+    }
+  };
+}
+```
+
+使用示例：
+
+```js
+window.addEventListener(
+  "scroll",
+  throttle(function () {
+    console.log("监听页面滚动");
+  }, 500)
+);
+```
+
+即使滚动事件一直触发，函数也只会每隔 `500ms` 执行一次。
+
+核心点：
+
+```js
+if (now - lastTime >= delay)
+```
+
+通过比较当前时间和上一次执行时间，判断是否允许执行。
+
+防抖和节流的区别：
+
+```txt
+防抖：等你停下来，再执行
+节流：不管你停不停，固定间隔执行
+```
+
+举例理解：
+
+```txt
+搜索框输入：适合防抖
+页面滚动监听：适合节流
+```
+
+#### 3. 函数柯里化（Currying）
+
+函数柯里化是指：**把一个接收多个参数的函数，转换成一系列接收单个或部分参数的函数**。
+
+普通函数：
+
+```js
+function add(a, b, c) {
+  return a + b + c;
+}
+
+add(1, 2, 3);
+```
+
+柯里化之后：
+
+```js
+curriedAdd(1)(2)(3);
+curriedAdd(1, 2)(3);
+curriedAdd(1)(2, 3);
+```
+
+简单实现：
+
+```js
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    }
+
+    return function (...nextArgs) {
+      return curried.apply(this, args.concat(nextArgs));
+    };
+  };
+}
+```
+
+使用示例：
+
+```js
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+
+console.log(curriedAdd(1)(2)(3)); // 6
+console.log(curriedAdd(1, 2)(3)); // 6
+console.log(curriedAdd(1)(2, 3)); // 6
+```
+
+这里的关键是：
+
+```js
+fn.length
+```
+
+`fn.length` 表示函数形参的个数。
+
+例如：
+
+```js
+function add(a, b, c) {}
+
+console.log(add.length); // 3
+```
+
+所以柯里化函数会不断收集参数。
+当参数数量达到原函数需要的数量时，就执行原函数。
+
+柯里化的作用：
+
+- 参数复用
+- 延迟执行
+- 拆分复杂函数
+- 让函数组合更灵活
+
+例如封装一个固定前缀的日志函数：
+
+```js
+function log(type, message) {
+  console.log(`[${type}] ${message}`);
+}
+
+const curriedLog = curry(log);
+
+const errorLog = curriedLog("error");
+const infoLog = curriedLog("info");
+
+errorLog("请求失败");
+infoLog("加载完成");
+```
+
+输出：
+
+```txt
+[error] 请求失败
+[info] 加载完成
+```
+
+这里 `errorLog` 复用了第一个参数 `"error"`，后续只需要传入具体消息。
