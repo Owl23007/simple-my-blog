@@ -101,7 +101,7 @@ const formatDate = (date: string | Date) => {
 <style scoped>
 .timeline-wrapper {
   width: 100%;
-  padding: 20px 0;
+  padding: 12px 0;
 }
 
 .timeline {
@@ -111,7 +111,7 @@ const formatDate = (date: string | Date) => {
 
 .timeline-item {
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   position: relative;
 
   &:last-child {
@@ -128,11 +128,12 @@ const formatDate = (date: string | Date) => {
 }
 
 .timeline-node {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--vp-c-brand), #5dade2);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  border: 3px solid var(--vp-c-bg);
+  box-shadow: 0 0 0 1px var(--vp-c-brand-soft);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -141,8 +142,8 @@ const formatDate = (date: string | Date) => {
   z-index: 2;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
-    transform: scale(1.2);
+    box-shadow: 0 0 0 4px var(--vp-c-brand-soft);
+    transform: scale(1.08);
   }
 }
 
@@ -152,7 +153,7 @@ const formatDate = (date: string | Date) => {
 }
 
 .timeline-line {
-  width: 2px;
+  width: 1px;
   flex: 1;
   background: var(--vp-c-divider);
   margin-top: 4px;
@@ -161,16 +162,16 @@ const formatDate = (date: string | Date) => {
 
 .timeline-content-wrapper {
   flex: 1;
-  padding-left: 24px;
-  margin-top: -8px;
+  padding-left: 18px;
+  margin-top: -6px;
 }
 
 .timeline-timestamp {
   font-size: 14px;
   font-weight: 600;
   color: var(--vp-c-brand);
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  letter-spacing: 0;
+  margin-bottom: 6px;
   min-width: 120px;
   transition: color 0.3s ease;
 }
@@ -182,8 +183,8 @@ const formatDate = (date: string | Date) => {
 
   &:hover .timeline-content {
     border-color: var(--vp-c-brand);
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
   }
 
   &:hover .timeline-item-title {
@@ -196,12 +197,11 @@ const formatDate = (date: string | Date) => {
 }
 
 .timeline-content {
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 14px 16px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
   cursor: pointer;
 }
 
@@ -247,10 +247,10 @@ const formatDate = (date: string | Date) => {
 
 .tag {
   display: inline-block;
-  padding: 2px 8px;
-  background: linear-gradient(135deg, var(--vp-c-brand-light), var(--vp-c-brand-lighter));
-  color: var(--vp-c-brand-dark);
-  border-radius: 10px;
+  padding: 2px 7px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  border-radius: 6px;
   font-size: 11px;
   font-weight: 500;
   white-space: nowrap;

@@ -120,7 +120,7 @@ const formatDate = (date: string | Date) => {
   display: block;
   height: 100%;
   padding: 1.5rem;
-  border-radius: 1rem;
+  border-radius: 8px;
   border: 1px solid #f3f4f6; /* gray-100 */
   background-color: #fff;
   transition: all 0.3s;
@@ -135,7 +135,7 @@ const formatDate = (date: string | Date) => {
   }
 
   &:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
     border-color: #bfdbfe; /* blue-200 */
     transform: translateY(-0.25rem);
 
@@ -162,7 +162,7 @@ const formatDate = (date: string | Date) => {
 .card-bg-hover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom right, rgba(239, 246, 255, 0.5), rgba(250, 245, 255, 0.5));
+  background: linear-gradient(to bottom right, rgba(239, 246, 255, 0.45), rgba(240, 253, 250, 0.35));
   opacity: 0;
   transition: opacity 0.5s;
 

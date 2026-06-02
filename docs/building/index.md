@@ -13,7 +13,11 @@ description: 网站建设与技术分享
 
 ## 📚 TODO List
 
-- [ ] 考虑一下sidebar的作用
-- [ ] 优化timeline样式
-- [ ] 基于github discussions实现评论功能
-- [ ] 优化一下生活板块，是否有必要单独设置
+- [x] 整理还没完成的文章内容：[网站内容与升级路线](./网站内容与升级路线.md)
+- [x] 整理网站开发升级顺序：[网站内容与升级路线](./网站内容与升级路线.md)
+- [ ] 优化 Timeline 样式
+- [ ] 为建站日志配置 sidebar
+- [ ] 基于 GitHub Discussions 接入 giscus 评论功能
+- [x] 统一缺失 frontmatter 的系列文章
+- [ ] 检查 README 与 package scripts 是否一致
+- [ ] 暂不单独拆生活板块，先用 tags 验证内容规模

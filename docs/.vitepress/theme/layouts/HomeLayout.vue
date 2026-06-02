@@ -9,13 +9,6 @@
             <img src="../assets/bg.webp" alt="" />
           </div>
 
-          <!-- Abstract Background Shapes -->
-          <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-          </div>
-
           <div class="hero-content">
             <div class="hero-inner">
               <!-- Text Content -->
@@ -143,6 +136,7 @@ import { computed } from 'vue'
 import ArticleCard from '../components/ArticleCard.vue'
 import SeriesList from '../components/SeriesList.vue'
 import { data as allPosts } from '../data/posts.data'
+import { data as allSeries } from '../data/series.data'
 
 const { Layout: DefaultLayout } = DefaultTheme
 
@@ -153,7 +147,7 @@ const featuredPosts = computed(() => {
 
 // 计算统计数据
 const totalPosts = computed(() => allPosts.length)
-const totalSeries = computed(() => 1)
+const totalSeries = computed(() => allSeries.length)
 const totalTags = computed(() => {
   const tags = new Set<string>()
   allPosts.forEach(post => {
@@ -178,19 +172,19 @@ const runDays = computed(() => {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 45vh;
-  padding-bottom: 3rem;
+  min-height: 52vh;
+  padding-bottom: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #f8fafc;
   transition: background-color 0.5s;
   margin-top: calc(var(--vp-nav-height) * -1);
   padding-top: calc(var(--vp-nav-height) + 1rem);
 
   .dark & {
-    background-color: #030712; /* gray-950 */
+    background-color: #050812;
   }
 }
 
@@ -198,68 +192,25 @@ const runDays = computed(() => {
   position: absolute;
   inset: 0;
   z-index: 0;
-  top: -150%;
+  top: 0;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3;
+    opacity: 0.18;
     transition: opacity 0.5s;
 
     .dark & {
-      opacity: 0.2;
-      filter: brightness(0.5);
+      opacity: 0.16;
+      filter: brightness(0.45);
     }
-  }
-}
-
-.hero-shapes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-
-  .shape {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(100px);
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .shape-1 {
-    top: -20%;
-    left: -10%;
-    width: 50%;
-    height: 50%;
-    background-color: rgba(96, 165, 250, 0.2); /* blue-400 */
-  }
-
-  .shape-2 {
-    top: 20%;
-    right: -10%;
-    width: 40%;
-    height: 40%;
-    background-color: rgba(192, 132, 252, 0.2); /* purple-400 */
-    animation-delay: 700ms;
-  }
-
-  .shape-3 {
-    bottom: -10%;
-    left: 20%;
-    width: 30%;
-    height: 30%;
-    background-color: rgba(45, 212, 191, 0.2); /* teal-400 */
-    animation-delay: 1000ms;
   }
 }
 
 .hero-content {
   position: relative;
-  max-width: 64rem; /* max-w-5xl */
+  max-width: 72rem;
   width: 100%;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -270,11 +221,11 @@ const runDays = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 
   @media (min-width: 768px) {
     flex-direction: row;
-    gap: 4rem;
+    gap: 5rem;
   }
 }
 
@@ -289,9 +240,9 @@ const runDays = computed(() => {
 }
 
 .title {
-  font-size: 1.6rem !important; /* text-3xl */
+  font-size: 1.75rem !important;
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
   color: #111827; /* gray-900 */
   margin-bottom: 1.5rem;
   line-height: 1.3 !important;
@@ -304,7 +255,7 @@ const runDays = computed(() => {
   }
 
   @media (min-width: 768px) {
-    font-size: 1.785rem !important; /* text-5xl */
+    font-size: 2.4rem !important;
     line-height: 1.15 !important;
   }
 }
@@ -351,7 +302,7 @@ const runDays = computed(() => {
   gap: 0.5rem;
   padding: 0.75rem 2rem;
   font-weight: 600;
-  border-radius: 0.75rem;
+  border-radius: 8px;
   transition: all 0.3s;
 
   &:hover {
@@ -427,7 +378,7 @@ const runDays = computed(() => {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top right, #3b82f6, #a855f7);
-  border-radius: 1rem;
+  border-radius: 8px;
   transform: rotate(6deg);
   opacity: 0.2;
   filter: blur(16px);
@@ -437,7 +388,7 @@ const runDays = computed(() => {
   position: absolute;
   inset: 0;
   background-color: #fff;
-  border-radius: 1rem;
+  border-radius: 8px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   border: 4px solid #fff;
@@ -465,7 +416,7 @@ const runDays = computed(() => {
   right: -2rem;
   background-color: #fff;
   padding: 0.75rem;
-  border-radius: 1rem;
+  border-radius: 8px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid #f3f4f6;
   animation: bounce 2s infinite alternate;
@@ -490,13 +441,13 @@ const runDays = computed(() => {
 }
 
 .featured-section {
-  padding-top: 2rem;
+  padding-top: 3rem;
   padding-bottom: 6rem;
-  background-color: #f9fafb; /* gray-50 */
+  background-color: #f8fafc;
   transition: background-color 0.5s;
 
   .dark & {
-    background-color: rgba(3, 7, 18, 0.8); /* gray-950/80 */
+    background-color: #070b14;
   }
 }
 
@@ -512,11 +463,11 @@ const runDays = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {
-  font-size: 1.875rem !important; /* text-3xl */
+  font-size: 1.65rem !important;
   font-weight: 700;
   color: #111827;
   margin-bottom: 1rem;
@@ -527,13 +478,13 @@ const runDays = computed(() => {
   }
 
   @media (min-width: 768px) {
-    font-size: 2.25rem; /* text-4xl */
+    font-size: 1.9rem;
   }
 }
 
 .title-underline {
-  height: 0.25rem;
-  width: 5rem;
+  height: 3px;
+  width: 4rem;
   background-color: #2563eb;
   border-radius: 9999px;
 }
@@ -572,7 +523,7 @@ const runDays = computed(() => {
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr;
@@ -586,7 +537,7 @@ const runDays = computed(() => {
 .featured-layout {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 
   @media (min-width: 1024px) {
     flex-direction: row;
@@ -612,9 +563,9 @@ const runDays = computed(() => {
 
 .status-card {
   background-color: #fff;
-  border-radius: 1rem;
+  border-radius: 8px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
   transition: background-color 0.5s, border-color 0.5s;
   border: 1px solid transparent;
 

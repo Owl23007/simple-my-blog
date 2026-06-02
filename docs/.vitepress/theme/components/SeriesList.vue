@@ -81,7 +81,7 @@ const getSeriesTitle = (title: string) => {
 
 .series-card {
   background-color: #fff;
-  border-radius: 1rem;
+  border-radius: 8px;
   border: 1px solid #f3f4f6;
   transition: all 0.3s;
   height: 100%;
@@ -95,7 +95,7 @@ const getSeriesTitle = (title: string) => {
 
   &:hover {
     transform: translateY(-0.25rem);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
     border-color: #bfdbfe;
 
     .dark & {
@@ -126,7 +126,7 @@ const getSeriesTitle = (title: string) => {
   position: absolute;
   inset: 0;
   background-color: #eff6ff;
-  border-radius: 1rem;
+  border-radius: 8px;
   transform: rotate(6deg);
   transition: transform 0.3s;
 

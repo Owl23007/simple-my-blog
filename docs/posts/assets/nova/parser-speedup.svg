@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">HTTP parser speedup comparison</title>
+  <desc id="desc">Bar chart showing Nova parser speed ratios against llhttp-wasm and Node native http_parser.</desc>
+  <rect width="1200" height="650" fill="#fbfcfe"/>
+  <text x="56" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#132238">解析器微基准倍率</text>
+  <text x="56" y="94" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#526173">倍率 = Nova req/s ÷ 对照实现 req/s，越高越好；1.0x 为持平线</text>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#526173">
+    <line x1="330" y1="130" x2="330" y2="560" stroke="#d8e0e8"/>
+    <line x1="480" y1="130" x2="480" y2="560" stroke="#edf2f7"/>
+    <line x1="630" y1="130" x2="630" y2="560" stroke="#cbd7e3" stroke-dasharray="6 6"/>
+    <line x1="780" y1="130" x2="780" y2="560" stroke="#edf2f7"/>
+    <line x1="930" y1="130" x2="930" y2="560" stroke="#edf2f7"/>
+    <text x="330" y="586" text-anchor="middle">0x</text>
+    <text x="480" y="586" text-anchor="middle">0.5x</text>
+    <text x="630" y="586" text-anchor="middle">1.0x</text>
+    <text x="780" y="586" text-anchor="middle">1.5x</text>
+    <text x="930" y="586" text-anchor="middle">2.0x</text>
+    <text x="1080" y="586" text-anchor="middle">2.5x</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="14">
+    <rect x="805" y="46" width="16" height="16" rx="3" fill="#16c7b7"/><text x="829" y="59" fill="#27364a">vs llhttp-wasm</text>
+    <rect x="960" y="46" width="16" height="16" rx="3" fill="#2f80ed"/><text x="984" y="59" fill="#27364a">vs Node native</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#253247">
+    <text x="56" y="158">GET simple / contiguous</text>
+    <rect x="330" y="140" width="684" height="16" rx="8" fill="#16c7b7"/><text x="1024" y="154" font-size="12">2.28x</text>
+    <rect x="330" y="162" width="450" height="16" rx="8" fill="#2f80ed"/><text x="790" y="176" font-size="12">1.50x</text>
+
+    <text x="56" y="238">GET simple / split-3</text>
+    <rect x="330" y="220" width="513" height="16" rx="8" fill="#16c7b7"/><text x="853" y="234" font-size="12">1.71x</text>
+    <rect x="330" y="242" width="312" height="16" rx="8" fill="#2f80ed"/><text x="652" y="256" font-size="12">1.04x</text>
+
+    <text x="56" y="318">GET many-headers / contiguous</text>
+    <rect x="330" y="300" width="603" height="16" rx="8" fill="#16c7b7"/><text x="943" y="314" font-size="12">2.01x</text>
+    <rect x="330" y="322" width="165" height="16" rx="8" fill="#2f80ed"/><text x="505" y="336" font-size="12">0.55x</text>
+
+    <text x="56" y="398">GET many-headers / split-3</text>
+    <rect x="330" y="380" width="564" height="16" rx="8" fill="#16c7b7"/><text x="904" y="394" font-size="12">1.88x</text>
+    <rect x="330" y="402" width="183" height="16" rx="8" fill="#2f80ed"/><text x="523" y="416" font-size="12">0.61x</text>
+
+    <text x="56" y="478">POST json(512B) / contiguous</text>
+    <rect x="330" y="460" width="696" height="16" rx="8" fill="#16c7b7"/><text x="1036" y="474" font-size="12">2.32x</text>
+    <rect x="330" y="482" width="435" height="16" rx="8" fill="#2f80ed"/><text x="775" y="496" font-size="12">1.45x</text>
+
+    <text x="56" y="558">POST json(512B) / split-3</text>
+    <rect x="330" y="540" width="771" height="16" rx="8" fill="#16c7b7"/><text x="1111" y="554" font-size="12">2.57x</text>
+    <rect x="330" y="562" width="537" height="16" rx="8" fill="#2f80ed"/><text x="877" y="576" font-size="12">1.79x</text>
+  </g>
+</svg>

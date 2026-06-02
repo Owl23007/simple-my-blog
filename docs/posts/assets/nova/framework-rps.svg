@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">HTTP framework requests per second comparison</title>
+  <desc id="desc">Grouped bar chart comparing Nova, Fastify, Express, and Koa across five benchmark scenarios.</desc>
+  <rect width="1200" height="720" fill="#f7fafc"/>
+  <text x="56" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#132238">端到端吞吐量对比</text>
+  <text x="56" y="94" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#526173">单位：requests/sec，200 connections，duration 10s</text>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#526173">
+    <line x1="270" y1="130" x2="270" y2="620" stroke="#d8e0e8"/>
+    <line x1="405" y1="130" x2="405" y2="620" stroke="#edf2f7"/>
+    <line x1="540" y1="130" x2="540" y2="620" stroke="#edf2f7"/>
+    <line x1="675" y1="130" x2="675" y2="620" stroke="#edf2f7"/>
+    <line x1="810" y1="130" x2="810" y2="620" stroke="#edf2f7"/>
+    <line x1="945" y1="130" x2="945" y2="620" stroke="#edf2f7"/>
+    <text x="262" y="642" text-anchor="middle">0</text>
+    <text x="405" y="642" text-anchor="middle">10k</text>
+    <text x="540" y="642" text-anchor="middle">20k</text>
+    <text x="675" y="642" text-anchor="middle">30k</text>
+    <text x="810" y="642" text-anchor="middle">40k</text>
+    <text x="945" y="642" text-anchor="middle">50k</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="14">
+    <rect x="700" y="45" width="16" height="16" rx="3" fill="#16c7b7"/><text x="724" y="58" fill="#27364a">Nova</text>
+    <rect x="790" y="45" width="16" height="16" rx="3" fill="#2f80ed"/><text x="814" y="58" fill="#27364a">Fastify</text>
+    <rect x="895" y="45" width="16" height="16" rx="3" fill="#8795a8"/><text x="919" y="58" fill="#27364a">Express</text>
+    <rect x="1005" y="45" width="16" height="16" rx="3" fill="#f2b84b"/><text x="1029" y="58" fill="#27364a">Koa</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#253247">
+    <text x="56" y="158">GET /json</text>
+    <rect x="270" y="138" width="354" height="13" rx="6" fill="#16c7b7"/><text x="634" y="150" font-size="12">26,194</text>
+    <rect x="270" y="156" width="314" height="13" rx="6" fill="#2f80ed"/><text x="594" y="168" font-size="12">23,248</text>
+    <rect x="270" y="174" width="109" height="13" rx="6" fill="#8795a8"/><text x="389" y="186" font-size="12">8,043</text>
+    <rect x="270" y="192" width="250" height="13" rx="6" fill="#f2b84b"/><text x="530" y="204" font-size="12">18,484</text>
+
+    <text x="56" y="258">GET /json-heavy</text>
+    <rect x="270" y="238" width="238" height="13" rx="6" fill="#16c7b7"/><text x="518" y="250" font-size="12">17,655</text>
+    <rect x="270" y="256" width="225" height="13" rx="6" fill="#2f80ed"/><text x="505" y="268" font-size="12">16,649</text>
+    <rect x="270" y="274" width="93" height="13" rx="6" fill="#8795a8"/><text x="373" y="286" font-size="12">6,852</text>
+    <rect x="270" y="292" width="189" height="13" rx="6" fill="#f2b84b"/><text x="469" y="304" font-size="12">13,975</text>
+
+    <text x="56" y="358">POST /echo-small</text>
+    <rect x="270" y="338" width="321" height="13" rx="6" fill="#16c7b7"/><text x="601" y="350" font-size="12">23,799</text>
+    <rect x="270" y="356" width="169" height="13" rx="6" fill="#2f80ed"/><text x="449" y="368" font-size="12">12,498</text>
+    <rect x="270" y="374" width="90" height="13" rx="6" fill="#8795a8"/><text x="370" y="386" font-size="12">6,670</text>
+    <rect x="270" y="392" width="195" height="13" rx="6" fill="#f2b84b"/><text x="475" y="404" font-size="12">14,454</text>
+
+    <text x="56" y="458">POST /echo-large</text>
+    <rect x="270" y="438" width="225" height="13" rx="6" fill="#16c7b7"/><text x="505" y="450" font-size="12">16,691</text>
+    <rect x="270" y="456" width="139" height="13" rx="6" fill="#2f80ed"/><text x="419" y="468" font-size="12">10,268</text>
+    <rect x="270" y="474" width="79" height="13" rx="6" fill="#8795a8"/><text x="359" y="486" font-size="12">5,838</text>
+    <rect x="270" y="492" width="156" height="13" rx="6" fill="#f2b84b"/><text x="436" y="504" font-size="12">11,583</text>
+
+    <text x="56" y="558">GET /json (p10)</text>
+    <rect x="270" y="538" width="445" height="13" rx="6" fill="#16c7b7"/><text x="725" y="550" font-size="12">32,944</text>
+    <rect x="270" y="556" width="416" height="13" rx="6" fill="#2f80ed"/><text x="696" y="568" font-size="12">30,810</text>
+    <rect x="270" y="574" width="143" height="13" rx="6" fill="#8795a8"/><text x="423" y="586" font-size="12">10,604</text>
+    <rect x="270" y="592" width="327" height="13" rx="6" fill="#f2b84b"/><text x="607" y="604" font-size="12">24,187</text>
+  </g>
+</svg>
