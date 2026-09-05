@@ -39,6 +39,9 @@
     "vitepress-plugin-group-icons": "^1.7.1"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ],
     "peerDependencyRules": {
       "ignoreMissing": [
         "@algolia/client-search",
