@@ -17,7 +17,13 @@
     "fmt:fix": "vp fmt docs/.vitepress --fix",
     "fmt:md": "prettier --write \"docs/**/*.md\"",
     "lint:md": "markdownlint docs/**/*.md --ignore docs/.vitepress",
-    "check": "vp check"
+    "check": "vp check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.md": "markdownlint",
+    "*.ts": "eslint --cache --fix",
+    "*.vue": "eslint --cache --fix"
   },
   "dependencies": {
     "markdown-it-task-lists": "^2.1.1",
@@ -30,6 +36,8 @@
   "devDependencies": {
     "@types/node": "^24.9.2",
     "@voidzero-dev/vite-plus-core": "^0.1.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "markdownlint-cli": "^0.45.0",
     "pagefind": "^1.3.0",
     "prettier": "^3.8.3",

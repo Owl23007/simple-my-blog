@@ -1,0 +1,3 @@
+pnpm run type-check
+pnpm run lint
+pnpm run build
