@@ -7,7 +7,7 @@ on:
 
 # 权限设置
 permissions:
-  contents: write  # 允许推送到其他分支
+  contents: write # 允许推送到其他分支
 
 jobs:
   sync:
@@ -16,9 +16,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          fetch-depth: 0  # 获取完整历史记录以便合并
+          fetch-depth: 0 # 获取完整历史记录以便合并
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git

@@ -2,9 +2,9 @@ name: CI - Code Quality Check
 
 on:
   push:
-    branches: [ develop, feature/*, hotfix/*, release/* ]
+    branches: [develop, feature/*, hotfix/*, release/*]
   pull_request:
-    branches: [ master, develop ]
+    branches: [master, develop]
 
 permissions:
   contents: read
@@ -17,34 +17,29 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20, 22]
+        node-version: [22, 24]
 
     steps:
       - name: 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: 设置 Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: 安装 pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: latest
           run_install: false
 
-      - name: 获取 pnpm store 目录
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - name: 设置 pnpm 缓存
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
-          path: ${{ env.STORE_PATH }}
+          path: ~/.local/share/pnpm/store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
