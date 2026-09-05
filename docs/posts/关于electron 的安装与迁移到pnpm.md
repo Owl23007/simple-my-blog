@@ -63,7 +63,8 @@ Error: Electron failed to install correctly, please delete node_modules/electron
 
 ##### 一键脚本
 
-为了防止下次再踩坑，我写了个 [PowerShell 脚本](https://github.com/Owl23007/Linx/blob/develop/scripts/unzip-electron.ps1)，一键处理解压和配置 `path.txt` 的问题。
+为了防止下次再踩坑，我写了个 [PowerShell 脚本](https://github.com/Owl23007/Linx/blob/develop/scripts/unzip-electron.ps1)，
+一键处理解压和配置 `path.txt` 的问题。
 
 :::details 脚本内容
 
