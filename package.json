@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.20.0",
   "author": "Oii Woof",
   "license": "MIT",
   "scripts": {

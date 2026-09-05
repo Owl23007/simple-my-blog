@@ -33,7 +33,7 @@ jobs:
       - name: 安装 pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: 10.20.0
           run_install: false
 
       - name: 设置 pnpm 缓存
@@ -45,7 +45,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: 安装依赖
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 类型检查
         run: pnpm run type-check
