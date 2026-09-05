@@ -9,30 +9,25 @@
       "DOM.Iterable"
     ],
     "skipLibCheck": true,
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    /* Linting */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    /* VitePress specific */
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    /* Path mapping */
-    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "docs/.vitepress/*"
+        "./docs/.vitepress/*"
       ],
       "~/*": [
-        "docs/*"
+        "./docs/*"
       ]
     }
   },

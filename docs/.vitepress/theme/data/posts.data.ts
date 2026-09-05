@@ -11,6 +11,12 @@ export interface Post {
 declare const data: Post[]
 export { data }
 
+function normalizeTags(tags: unknown): string[] {
+  if (Array.isArray(tags)) return tags.map(String).filter(Boolean)
+  if (typeof tags === 'string') return [tags].filter(Boolean)
+  return []
+}
+
 export default createContentLoader('**/*.md', {
   excerpt: true,
   transform(raw): Post[] {
@@ -33,7 +39,7 @@ export default createContentLoader('**/*.md', {
           date: frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined,
           description: frontmatter.description || excerpt || '',
           link: url,
-          tags: frontmatter.tags || []
+          tags: normalizeTags(frontmatter.tags || frontmatter.tag)
         }
       })
       .filter((item): item is Post => item !== null)
