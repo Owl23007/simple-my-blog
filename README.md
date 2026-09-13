@@ -34,17 +34,14 @@
 
 ### 环境要求
 
-- Node.js 18+
-- npm 或 yarn 或 pnpm
+- Node.js 22.18+（CI 使用 22 / 24）
+- pnpm 10.20.0
 
 ### 安装依赖
 
 ```bash
 # 全局安装 pnpm
-npm install -g pnpm
-
-# (可选) 在项目中安装 pnpm
-npm install pnpm
+npm install -g pnpm@10.20.0
 
 # 安装项目依赖
 pnpm install
@@ -53,7 +50,7 @@ pnpm install
 ### 本地开发
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 启动后访问 <http://localhost:5173> 即可预览博客。
@@ -61,15 +58,15 @@ npm run dev
 ### 构建生产版本
 
 ```bash
-npm run build
+pnpm build
 ```
 
-构建产物会生成在 `.vitepress/dist` 目录下。
+构建产物会生成在 `docs/.vitepress/dist` 目录下，并自动生成 Pagefind 搜索索引。
 
 ### 预览构建结果
 
 ```bash
-npm run preview
+pnpm serve
 ```
 
 ## 项目结构
@@ -80,21 +77,26 @@ npm run preview
 ├── docs/                   # 文档根目录
 │   ├── .vitepress/         # VitePress 配置目录
 │   │   ├── config.mts      # 站点配置文件
-│   │   ├── blog-theme.ts   # 博客主题配置
+│   │   ├── comments.ts     # Giscus 仓库、分类和主题地址
 │   │   └── theme/          # 主题配置
 │   │       ├── index.ts        # 主题入口
-│   │       ├── style.scss      # 自定义样式
-│   │       ├── user-theme.css  # 用户自定义主题
+│   │       ├── style.css       # 自定义样式
+│   │       ├── layouts/        # 首页、文章、系列和 404 布局
+│   │       ├── components/     # 列表、卡片和 Giscus 评论组件
+│   │       ├── data/           # 构建时文章数据加载器
+│   │       ├── utils/          # 侧边栏与评论标识工具
 │   │       └── assets/         # 主题资源文件
 │   ├── index.md            # 首页
-│   ├── about.md            # 关于页面
+│   ├── posts/              # 随写文章
+│   ├── series/             # 系列文章
+│   ├── building/           # 建站日记
+│   ├── pages/              # 关于与组件页面
 │   ├── public/             # 静态资源目录
+│   │   ├── giscus/         # iframe 内浅色、深色自定义主题
 │   │   └── robots.txt      # 搜索引擎爬虫配置
 │   └── sop/                # 文档目录
-│       ├── quickStart.md   # 快速开始
-│       ├── component.md    # 组件文档
-│       ├── style.md        # 样式文档
-│       └── more.md         # 更多文档
+│       └── comments.md     # 评论配置与部署说明
+├── tests/                 # 评论显示规则与主题地址测试
 └── package.json            # 项目配置
 ```
 
@@ -102,14 +104,11 @@ npm run preview
 
 ### 创建新文章
 
-在 `docs/` 目录或其子目录（如 `docs/sop/`）下创建 `.md` 文件即可：
+在 `docs/posts/`、`docs/series/` 或 `docs/building/` 下创建 `.md` 文件即可：
 
 ```bash
-# 在 docs 目录创建文章
-echo "# 我的第一篇文章" > docs/my-first-post.md
-
-# 或在 sop 目录创建文章
-echo "# 我的第一篇文章" > docs/sop/my-first-post.md
+# 创建随写文章，再补充下面的 Front Matter
+echo "# 我的第一篇文章" > docs/posts/my-first-post.md
 ```
 
 ### 文章 Front Matter
@@ -131,14 +130,33 @@ description: 文章描述
 
 ## 配置
 
-主要配置文件为 `.vitepress/config.ts`，你可以在此修改：
+主要配置文件为 `docs/.vitepress/config.mts`，你可以在此修改：
 
 - 站点标题、描述
 - 导航菜单
 - 侧边栏
 - 主题配置
 - 社交链接
-- 评论系统等
+
+### 评论系统
+
+使用 **Giscus + GitHub Discussions**，读者直接在文章底部登录、评论和回复。
+外层 UI 与 iframe 内部主题均适配博客配色，支持浅色蓝色和深色橙色。
+
+当前已配置 `Owl23007/simple-my-blog` 的 `Announcements` 分类。复制此项目时，先在自己的
+GitHub 仓库启用 Discussions、安装 Giscus App，再将生成的仓库和分类 ID 填入
+`docs/.vitepress/comments.ts`。未配置时显示准备中的提示，不会加载评论服务。
+
+详见 [Giscus 配置、文章开关与自定义主题托管](docs/sop/comments.md)。
+
+### 本地检查
+
+```bash
+pnpm type-check
+pnpm lint
+pnpm test:comments
+pnpm build
+```
 
 详细配置请参考：
 
@@ -150,14 +168,14 @@ description: 文章描述
 
 ### 部署到 GitHub Pages
 
-1. 在 `.vitepress/config.ts` 中设置正确的 `base` 路径
+1. 在 `docs/.vitepress/config.mts` 中设置正确的 `base` 路径
 2. 构建项目
 
    ```bash
-   npm run build
+   pnpm build
    ```
 
-3. 将 `.vitepress/dist` 目录部署到 GitHub Pages
+3. 将 `docs/.vitepress/dist` 目录部署到 GitHub Pages
 
 ## 参考资源
 

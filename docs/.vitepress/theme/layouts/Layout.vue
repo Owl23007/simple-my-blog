@@ -3,6 +3,9 @@ import mermaid from 'mermaid'
 import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { computed, onMounted, watch } from 'vue'
+import { commentsConfig } from '../../comments'
+import GiscusComments from '../components/GiscusComments.vue'
+import { commentTerm, shouldShowComments } from '../utils/comments'
 import HomeLayout from './HomeLayout.vue'
 import NotFound from './NotFound.vue'
 import SeriesLayout from './SeriesLayout.vue'
@@ -20,6 +23,18 @@ const isNotFound = computed(() => {
 })
 
 const layout = computed(() => (frontmatter.value as any)?.layout)
+const showComments = computed(
+  () =>
+    commentsConfig.enabled &&
+    shouldShowComments(
+      page.value.relativePath,
+      layout.value,
+      frontmatter.value.comments,
+    ),
+)
+const discussionTerm = computed(() =>
+  commentTerm(page.value.relativePath, frontmatter.value.commentId),
+)
 
 const isHomePage = computed(() => {
   const p: any = page.value
@@ -41,7 +56,7 @@ watch(isDark, () => updateDarkMode())
 
 // ============ Mermaid ============
 async function renderMermaid() {
-  await new Promise(resolve => setTimeout(resolve, 100))
+  await new Promise((resolve) => setTimeout(resolve, 100))
   try {
     await mermaid.run()
   } catch (e) {
@@ -60,5 +75,13 @@ watch(() => router.route.path, renderMermaid)
   </Layout>
   <HomeLayout v-else-if="layout === 'home' && isHomePage" />
   <SeriesLayout v-else-if="layout === 'series'" />
-  <Layout v-else />
+  <Layout v-else>
+    <template #doc-after>
+      <GiscusComments
+        v-if="showComments"
+        :key="discussionTerm"
+        :term="discussionTerm"
+      />
+    </template>
+  </Layout>
 </template>

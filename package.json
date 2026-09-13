@@ -11,6 +11,7 @@
     "build": "vitepress build docs && pagefind --site docs/.vitepress/dist",
     "serve": "vitepress serve docs",
     "type-check": "tsc --noEmit --skipLibCheck",
+    "test:comments": "node --experimental-strip-types --test tests/comments.test.mjs",
     "lint": "vp lint docs/.vitepress",
     "lint:fix": "vp lint docs/.vitepress --fix",
     "fmt": "vp fmt docs/.vitepress",
@@ -26,6 +27,7 @@
     "*.vue": "eslint --cache --fix"
   },
   "dependencies": {
+    "@giscus/vue": "^3.1.1",
     "markdown-it-task-lists": "^2.1.1",
     "mermaid": "^11.12.1",
     "vue": "3.5.12"

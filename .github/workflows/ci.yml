@@ -51,6 +51,9 @@ jobs:
       - name: 类型检查
         run: pnpm run type-check
 
+      - name: 评论配置测试
+        run: pnpm run test:comments
+
       - name: Oxlint 检查
         run: pnpm run lint
 

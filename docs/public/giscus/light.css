@@ -1,0 +1,193 @@
+/* Blog theme for Giscus. Keep light.css and dark.css layout rules in sync. */
+main {
+  color-scheme: light;
+  --color-fg-default: #273449;
+  --color-fg-muted: #617086;
+  --color-fg-subtle: #69788d;
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f6f8fc;
+  --color-canvas-subtle: #f6f8fc;
+  --color-border-default: #e1e7ef;
+  --color-border-muted: #edf1f6;
+  --color-neutral-muted: #edf1f6;
+  --color-accent-fg: #2563eb;
+  --color-accent-emphasis: #2563eb;
+  --color-accent-muted: #bfdbfe;
+  --color-accent-subtle: #eff6ff;
+  --color-success-fg: #15803d;
+  --color-attention-fg: #936016;
+  --color-attention-muted: #e8ce91;
+  --color-attention-subtle: #fffbeb;
+  --color-danger-fg: #c42c3e;
+  --color-danger-muted: #fecdd3;
+  --color-danger-subtle: #fff1f2;
+  --color-btn-text: var(--color-fg-default);
+  --color-btn-bg: var(--color-canvas-default);
+  --color-btn-border: var(--color-border-default);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: var(--color-canvas-inset);
+  --color-btn-hover-border: var(--color-accent-muted);
+  --color-btn-active-bg: var(--color-accent-subtle);
+  --color-btn-active-border: var(--color-accent-muted);
+  --color-btn-selected-bg: var(--color-accent-subtle);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #2563eb;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-shadow: 0 3px 8px #2563eb18;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #1d4ed8;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #1e40af;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: #ffffff;
+  --color-btn-primary-disabled-bg: #7894d0;
+  --color-btn-primary-disabled-border: transparent;
+  --color-action-list-item-default-hover-bg: var(--color-accent-subtle);
+  --color-segmented-control-bg: var(--color-canvas-inset);
+  --color-segmented-control-button-bg: var(--color-canvas-default);
+  --color-segmented-control-button-selected-border: var(--color-border-default);
+  --color-primer-shadow-inset: 0 0 transparent;
+  --color-social-reaction-bg-hover: var(--color-accent-subtle);
+  --color-social-reaction-bg-reacted-hover: var(--color-accent-muted);
+  --color-prettylights-syntax-comment: #617086;
+  --color-prettylights-syntax-constant: #1754af;
+  --color-prettylights-syntax-entity: #7544a5;
+  --color-prettylights-syntax-storage-modifier-import: #273449;
+  --color-prettylights-syntax-entity-tag: #21714b;
+  --color-prettylights-syntax-keyword: #b83250;
+  --color-prettylights-syntax-string: #1754af;
+  --color-prettylights-syntax-variable: #965917;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #b83250;
+  --color-prettylights-syntax-invalid-illegal-text: #ffffff;
+  --color-prettylights-syntax-invalid-illegal-bg: #b83250;
+  --color-prettylights-syntax-carriage-return-text: #ffffff;
+  --color-prettylights-syntax-carriage-return-bg: #b83250;
+  --color-prettylights-syntax-string-regexp: #21714b;
+  --color-prettylights-syntax-markup-list: #965917;
+  --color-prettylights-syntax-markup-heading: #1754af;
+  --color-prettylights-syntax-markup-italic: var(--color-fg-default);
+  --color-prettylights-syntax-markup-bold: var(--color-fg-default);
+  --color-prettylights-syntax-markup-deleted-text: var(--color-danger-fg);
+  --color-prettylights-syntax-markup-deleted-bg: var(--color-danger-subtle);
+  --color-prettylights-syntax-markup-inserted-text: var(--color-success-fg);
+  --color-prettylights-syntax-markup-inserted-bg: #eaf9ef;
+  --color-prettylights-syntax-markup-changed-text: var(--color-attention-fg);
+  --color-prettylights-syntax-markup-changed-bg: var(--color-attention-subtle);
+  --color-prettylights-syntax-markup-ignored-text: var(--color-fg-muted);
+  --color-prettylights-syntax-markup-ignored-bg: var(--color-canvas-inset);
+  --color-prettylights-syntax-meta-diff-range: #7544a5;
+  --color-prettylights-syntax-brackethighlighter-angle: var(--color-fg-muted);
+  --color-prettylights-syntax-sublimelinter-gutter-mark: var(--color-fg-subtle);
+  --color-prettylights-syntax-constant-other-reference-link: #1754af;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  line-height: 1.7;
+}
+body {
+  background: transparent;
+}
+.gsc-main {
+  gap: 24px;
+}
+.gsc-header {
+  padding-bottom: 12px;
+}
+.gsc-reactions {
+  padding-bottom: 18px;
+}
+.gsc-reactions-button {
+  border-radius: 12px;
+}
+.gsc-comment-box {
+  border-radius: 14px;
+}
+.gsc-comment-box-tabs {
+  border-bottom: 1px solid var(--color-border-muted);
+}
+.gsc-comment-box-textarea {
+  min-height: 132px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-canvas-inset);
+  line-height: 1.8;
+}
+.gsc-comment-box-textarea:focus {
+  background: var(--color-canvas-default);
+  border-color: var(--color-accent-fg);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+.gsc-comment {
+  border: 1px solid var(--color-border-default);
+  border-radius: 14px;
+  background: var(--color-canvas-default);
+  overflow: hidden;
+}
+.gsc-comment-header {
+  padding: 16px 18px 8px;
+}
+.gsc-comment-content {
+  padding: 8px 18px 18px;
+}
+.gsc-comment-author-avatar {
+  border-radius: 50%;
+}
+.gsc-comment-author {
+  font-weight: 600;
+}
+.gsc-comment-footer {
+  padding: 0 18px 14px;
+}
+.gsc-replies {
+  margin: 0 18px 16px;
+  padding-left: 16px;
+  border-left: 2px solid var(--color-accent-muted);
+}
+.gsc-reply {
+  border-radius: 10px;
+}
+.gsc-reply-box {
+  border-radius: 10px;
+}
+.gsc-comment-box-buttons .btn,
+.gsc-reply-box .btn {
+  border-radius: 9px;
+}
+.gsc-comment-box-bottom {
+  padding-top: 12px;
+}
+.gsc-comment-box-bottom .btn-primary {
+  padding: 8px 18px;
+  font-weight: 600;
+}
+.markdown {
+  font-size: 14px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.markdown pre {
+  border-radius: 10px;
+}
+main a:focus-visible,
+main button:focus-visible,
+main summary:focus-visible {
+  outline: 2px solid var(--color-accent-fg);
+  outline-offset: 3px;
+}
+@media (max-width: 480px) {
+  .gsc-comment-header {
+    padding: 12px 12px 6px;
+  }
+  .gsc-comment-content {
+    padding: 6px 12px 12px;
+  }
+  .gsc-comment-footer {
+    padding: 0 12px 12px;
+  }
+  .gsc-replies {
+    margin: 0 12px 12px;
+    padding-left: 10px;
+  }
+}
